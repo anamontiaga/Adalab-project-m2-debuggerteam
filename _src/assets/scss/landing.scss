@@ -1,0 +1,87 @@
+@import 'core/settings';
+@import 'core/variables';
+
+body {
+    margin: auto;
+    box-sizing: border-box;
+    
+}
+
+.layout-page {
+    background-color: $colorBackground;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    &__logo {
+        height: 63px;
+        width: 250px;
+        margin-bottom: 35.4px;
+    }
+    &__description {
+        text-align: center;
+        margin-bottom: 17.8px;
+        width: 264.8px;
+        &__title {
+            font-family: $font-familyLanding;
+            color: $colorButton;
+            font-size: 19.2px;
+            margin: 0;
+        }
+        &__text {
+            font-family: $font-familyText;
+            color: $colorGreenDark;
+            font-size: 12.8px;
+            margin: 0;
+        }
+    }
+    &__menu {
+        border: 1.6px solid $colorButton;
+        border-radius: 4px;
+        width: 268px;
+        height: 74px;
+        margin-bottom: 38.6px;
+        &__list {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            &__itens {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                font-family: $font-familyText;
+                margin-top: 14px;
+            }
+            &__description {
+                font-family: $font-familyText;
+                color: #54585a;
+                font-size: 12.8px;
+            }
+        } 
+    }
+    &__button {
+        height: 42px;
+        width: 129px;
+        border-radius: 21px;
+        background-color: $colorGreenMedium;
+        color: $colorWhite;
+        font-family: $font-familyText;
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+}
+
+.fas {
+    color: $colorButton;
+}
+
+// .layout-page__menu__list__one {
+//     display: flex;
+//     flex-direction: column;
+//     text-align: center;
+// }
