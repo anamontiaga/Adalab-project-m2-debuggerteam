@@ -8,6 +8,14 @@ $colorWhite: #ffffff;
 $colorButton: #e17334;
 
 //Fonts
-$font-familyLanding: 'Merriweather', serif;
-$font-familyText: 'Open Sans', sans-serif;
+$font-familyLanding: "Merriweather", serif;
+$font-familyText: "Open Sans", sans-serif;
+$font-familyTitle: "Montserrat", sans-serif; /* <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet"> */
 
+//Images path
+$imagesPath: "../assets/images/";
+$iconsPath: "../assets/icons/";
+
+//Media-querys
+$mediaTablet: 768px;
+$mediaDesktop: 1024px;
