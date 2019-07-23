@@ -1,14 +1,24 @@
 @import "core/variables";
 
 .footer_wrapper {
+  height: 20vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  @media all and (min-width: $mediaTablet) {
+    flex-direction: row;
+    justify-content: space-around;
+  }
   .footer_copy {
     color: #6b6b6b;
   }
   .footer_logo {
-    background-image: url();
+    width: 103px;
+    height: 40px;
+    background-position: cover;
+    background-repeat: no-repeat;
   }
 }
