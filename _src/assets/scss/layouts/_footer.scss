@@ -1,6 +1,6 @@
 @import "core/variables";
 
-.footer_wrapper {
+.footr {
   height: 20vh;
   background-color: #ffffff;
   display: flex;
@@ -8,14 +8,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 0 40px;
   @media all and (min-width: $mediaTablet) {
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
   }
-  .footer_copy {
+  &_copy {
     color: #6b6b6b;
   }
-  .footer_logo {
+  &_logo {
     width: 103px;
     height: 40px;
     background-position: cover;
