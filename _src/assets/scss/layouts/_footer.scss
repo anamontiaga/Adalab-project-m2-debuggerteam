@@ -1,12 +1,25 @@
-.footer_wrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .footer_copy{
-        color: #6b6b6b;
-    }
-    .footer_logo{
-        background-image: url()
-    }
+@import "core/variables";
+
+.footr {
+  height: 20vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 40px;
+  @media all and (min-width: $mediaTablet) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  &_copy {
+    color: #6b6b6b;
+  }
+  &_logo {
+    width: 103px;
+    height: 40px;
+    background-position: cover;
+    background-repeat: no-repeat;
+  }
 }
