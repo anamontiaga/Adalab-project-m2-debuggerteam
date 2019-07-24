@@ -1,3 +1,15 @@
+@mixin paletBoxes($color1, $color2, $color3) {
+  .box-1 {
+    background-color: $color1;
+  }
+  .box-2 {
+    background-color: $color2;
+  }
+  .box-3 {
+    background-color: $color3;
+  }
+}
+
 .color-pallet {
   display: flex;
   justify-content: flex-end;
@@ -15,13 +27,13 @@
 }
 
 .blue {
-  .box-1 {
-    background-color: $colorDarkGreenBlue;
-  }
-  .box-2 {
-    background-color: $colorDirtyBlue;
-  }
-  .box-3 {
-    background-color: $colorGreenLight;
-  }
+  @include paletBoxes($colorDarkGreenBlue, $colorDirtyBlue, $colorGreenLight);
+}
+
+.red {
+  @include paletBoxes($colorDriedBlood, $colorRustyRed, $colorTomato);
+}
+
+.yellow {
+  @include paletBoxes($colorLatex, $colorOrange, $colorLightGreyBlue);
 }
