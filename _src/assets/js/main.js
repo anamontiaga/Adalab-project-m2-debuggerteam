@@ -8,3 +8,13 @@ function handlerGoHome() {
 }
 
 startButton.addEventListener("click", handlerGoHome);
+
+debugger;
+const getBody = document.querySelector(".layout");
+
+function focusButton() {
+  const activeButton = startButton.focus();
+  return true;
+}
+
+getBody.addEventListener("click", focusButton);
