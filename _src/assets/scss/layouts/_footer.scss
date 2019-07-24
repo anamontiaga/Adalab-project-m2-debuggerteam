@@ -15,10 +15,13 @@
   }
   &_copy {
     color: #6b6b6b;
+    font-family: $font-familyText;
+    font-size: 14px;
   }
   &_logo {
     width: 103px;
     height: 40px;
+    margin-top: 12px;
     background-position: cover;
     background-repeat: no-repeat;
   }
