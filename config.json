@@ -1,8 +1,8 @@
 {
   "fonts": {
-    "src": "_src/assets/fonts/",
-    "dest": "public/assets/fonts/*.*",
-    "dist": "docs/assets/fonts/*.*"
+    "src": "_src/assets/fonts/**",
+    "dest": "public/assets/fonts/",
+    "dist": "docs/assets/fonts/"
   },
   "icons": {
     "src": "_src/assets/icons/*.*",
