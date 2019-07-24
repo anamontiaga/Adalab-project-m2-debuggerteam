@@ -1,19 +1,24 @@
+.color-pallet {
+  display: flex;
+  flex-basis: 50%;
+}
+.color-pallet__colors {
+  display: flex;
+}
 .blue {
-  .color1 {
-    background-color: blue;
+  .col1 {
+    background-color: $colorDarkGreenBlue;
+    width: 30px;
+    height: 25px;
   }
-  .color2 {
-    background-color: aqua;
+  .col2 {
+    background-color: $colorDirtyBlue;
+    width: 30px;
+    height: 25px;
   }
-  .color3 {
-    background-color: azure;
+  .col3 {
+    background-color: $colorGreenLight;
+    width: 30px;
+    height: 25px;
   }
-}
-
-.red {
-  background-color: red;
-}
-
-.yellow {
-  background-color: yellow;
 }
