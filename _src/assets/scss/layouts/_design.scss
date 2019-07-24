@@ -1,0 +1,21 @@
+.design {
+  padding: 30px 20px;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+
+    &__icon {
+      margin-right: 10px;
+      width: 21px;
+      height: 18px;
+    }
+  }
+
+  &__colors {
+    &__text {
+      margin-left: 20px;
+    }
+  }
+}
