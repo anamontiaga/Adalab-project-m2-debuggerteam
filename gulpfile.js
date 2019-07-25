@@ -220,6 +220,7 @@ gulp.task(
       gulp.watch(config.icons.src, gulp.series(["icons", "bs-reload"]));
       gulp.watch(config.scss.src, gulp.series("styles"));
       gulp.watch(config.js.src, gulp.series(["scripts", "bs-reload"]));
+      gulp.watch(config.js.src, gulp.series(["fonts", "bs-reload"]));
       done();
     }
   )
