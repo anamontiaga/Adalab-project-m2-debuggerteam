@@ -1,5 +1,5 @@
 "use strict";
-
+// Acción boton
 const startButton = document.querySelector(".layout-page__button");
 
 function handlerGoHome() {
@@ -8,13 +8,12 @@ function handlerGoHome() {
 }
 
 startButton.addEventListener("click", handlerGoHome);
-
+// Focus onclick
 debugger;
 const getBody = document.querySelector(".layout");
 
-function focusButton() {
-  const activeButton = startButton.focus();
-  return true;
+function getFocus() {
+  startButton.focus();
 }
 
-getBody.addEventListener("click", focusButton);
+getBody.addEventListener("click", getFocus);
