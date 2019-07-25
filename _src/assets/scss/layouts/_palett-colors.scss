@@ -1,24 +1,20 @@
 .color-pallet {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   flex-basis: 50%;
-}
-.color-pallet__colors {
-  display: flex;
-}
-.blue {
-  .col1 {
-    background-color: $colorDarkGreenBlue;
-    width: 30px;
-    height: 25px;
+  margin-bottom: 20px;
+
+  .color-btn {
+    margin-right: 10px;
   }
-  .col2 {
-    background-color: $colorDirtyBlue;
-    width: 30px;
-    height: 25px;
-  }
-  .col3 {
-    background-color: $colorGreenLight;
-    width: 30px;
-    height: 25px;
+
+  &__colors {
+    display: flex;
+
+    &__box {
+      width: 30px;
+      height: 25px;
+    }
   }
 }
