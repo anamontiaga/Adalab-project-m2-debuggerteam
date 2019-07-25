@@ -18,15 +18,3 @@
     }
   }
 }
-
-.blue {
-  @include paletBoxes($colorDarkGreenBlue, $colorDirtyBlue, $colorGreenLight);
-}
-
-.red {
-  @include paletBoxes($colorDriedBlood, $colorRustyRed, $colorTomato);
-}
-
-.yellow {
-  @include paletBoxes($colorLatex, $colorOrange, $colorLightGreyBlue);
-}

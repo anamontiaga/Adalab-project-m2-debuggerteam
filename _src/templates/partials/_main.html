@@ -1,21 +1,23 @@
 <main class="main">
-  <section class="visualization">
-    <button class="visualization__reset">
-      <i class="visualization__reset__icon"></i>
-      Reset
-    </button>
-    <div class="visualization__user">
-      <h3 class="visualization__user__name">Nombre Apellido</h3>
-      <p class="visualization__user__job">Front-end developer</p>
-      <div class="visualization__user__img">
-        <img src="#" alt="imagen de previsualización" class="user-image" />
+  <section class="visualization yellow">
+    <div class="visualization__wrap">
+      <button class="visualization__reset home--subtitle">
+        <i class="visualization__reset__icon far fa-trash-alt"></i>
+        Reset
+      </button>
+      <div class="visualization__user">
+        <div class="text__wrap text--border">
+          <h3 class="visualization__user__name name--color">Nombre Apellido</h3>
+          <p class="visualization__user__job">Front-end developer</p>
+        </div>
+        <div class="visualization__user__img"></div>
+        <ul class="visualization__user__icon-list">
+          <li class="icon border--color"></li>
+          <li class="icon border--color"></li>
+          <li class="icon border--color"></li>
+          <li class="icon border--color"></li>
+        </ul>
       </div>
-      <ul class="visualization__user__icon-list">
-        <li class="icon__mobile"></li>
-        <li class="icon__mail"></li>
-        <li class="icon__linkedin"></li>
-        <li class="icon__github"></li>
-      </ul>
     </div>
   </section>
   <partial src="_design.html"></partial>

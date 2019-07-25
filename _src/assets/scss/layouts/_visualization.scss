@@ -1,0 +1,67 @@
+.visualization {
+  background-color: $colorPYellowTertiary;
+  width: 100vw;
+  height: 457px;
+  padding: 40px;
+  box-sizing: border-box;
+
+  &__wrap {
+    margin: 0 auto;
+    width: 240px;
+  }
+
+  &__reset {
+    border: 1px solid $colorWhite;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    width: 75px;
+    height: 30px;
+  }
+
+  &__user {
+    box-sizing: border-box;
+    width: 100%;
+    height: 330px;
+    padding-top: 23px;
+    background-color: $colorWhite;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+
+    .text__wrap {
+      padding-left: 15px;
+      margin-bottom: 10px;
+      border-left: 5px solid red;
+    }
+
+    &__name {
+      font: bold 18px $font-familyTitle;
+    }
+
+    &__job {
+      color: $colorHomeText;
+      font: 16px $font-familyTitle;
+      line-height: 20px;
+    }
+
+    &__img {
+      width: 100%;
+      height: 200px;
+      background-image: url("../images/blank-profile.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    &__icon-list {
+      margin: 10px 0 0 20px;
+
+      .icon {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border: 2px solid;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+  }
+}
