@@ -1,0 +1,69 @@
+@import "core/variables";
+
+.data {
+  display: flex;
+  flex-direction: column;
+  max-width: 281px;
+  justify-content: center;
+  &__title {
+    display: flex;
+    flex-direction: row nowrap;
+    justify-content: space-between;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &__image {
+      display: flex;
+      flex-direction: row;
+      padding: 10px;
+      &-label {
+        color: $colorGreenDark;
+        font-family: $font-familyText;
+        font-size: 14px;
+      }
+      &-button {
+        width: 140px;
+        height: 30px;
+        background-color: $colorButton;
+        text-decoration: none;
+        color: $colorWhite;
+        font-family: $font-familyText;
+        font-size: 14px;
+        border-radius: 3px;
+        margin-right: 20px;
+      }
+      &-thumbnail {
+        box-sizing: border-box;
+        width: 30px;
+        height: 30px;
+        border: 1px solid $colorPBlueTertiary;
+      }
+    }
+    //Fin del estilo image
+    &-label {
+      color: $colorGreenDark;
+      font-family: $font-familyText;
+      font-size: 14px;
+    }
+    &-item {
+      box-sizing: border-box;
+      height: 30px;
+      margin-top: 7px;
+      margin-bottom: 20px;
+      border: 1px $colorPBlueTertiary solid;
+      &::placeholder {
+        font-family: $font-familyText;
+        color: #c5c5c5;
+        font-size: 14px;
+        padding-inline-start: 10px;
+      }
+    }
+  }
+}
+
+.data__form--wrapper {
+  display: flex;
+  flex-direction: column;
+}
