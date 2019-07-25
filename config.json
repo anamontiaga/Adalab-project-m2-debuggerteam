@@ -1,6 +1,6 @@
 {
   "fonts": {
-    "src": "_src/assets/fonts/",
+    "src": "_src/assets/fonts/*.*",
     "dest": "public/assets/fonts/*.*",
     "dist": "docs/assets/fonts/*.*"
   },
