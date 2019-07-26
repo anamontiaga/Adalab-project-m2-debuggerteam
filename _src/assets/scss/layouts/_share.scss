@@ -1,0 +1,71 @@
+.share {
+  padding: 30px 0 30px;
+  max-width: 280px;
+  margin: auto;
+  border-bottom: 1px solid $colorBorderBottom;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+
+    &__icon {
+      margin-right: 10px;
+      width: 21px;
+      height: 18px;
+    }
+    &__btn {
+      font-size: 18px;
+      color: $colorHomeText;
+    }
+
+  }
+  &__createcard__btn {
+    &__title {
+      height: 50px;
+      width: 199px;
+      border-radius: 12px;
+      background-color: $colorButton;
+      color: $colorWhite;
+      font-family: $font-familyText;
+      font-weight: 400;
+      font-size: 18px;
+      margin-left: 60px;
+      margin-bottom: 61px;
+      text-transform: uppercase;
+      padding: 13px 18px 13px 51px;
+    }
+  }
+  &__twitter {
+    &__title {
+      color: $colorHomeText;
+      font-family: $font-familyText;
+      font-weight: 600;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    &__btn {
+      height: 30px;
+      width: 181px;
+      border-radius: 3px;
+      background-color: $coloeButtonTwitter;
+      color: $colorWhite;
+      font-family: $font-familyText;
+      font-size: 14px;
+      line-height: 1.43;
+      margin-left: 70px;
+      margin-bottom: 61px;
+      padding: 3px 9px 7px 38px;
+    }
+    &__link {
+      color: $colorButton;
+      font-family: $font-familyText;
+      font-weight: 600;
+      font-size: 12px;
+      margin-bottom: 10px;
+      display: block;
+      width:292px;
+      margin-left: -36px;
+    }
+  }
+}
