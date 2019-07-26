@@ -4,10 +4,15 @@
   margin: auto;
   border-bottom: 1px solid $colorBorderBottom;
 
+  @media all and (max-width: $mediaTablet) {
+    width: 330px;
+    padding-bottom: 0;
+  }
+
   &__title {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
 
     &__icon {
       font-size: 18px;
@@ -31,6 +36,9 @@
     justify-content: space-between;
     &__text {
       margin-left: 20px;
+      @media all and (max-width: $mediaTablet) {
+        margin-left: 0;
+      }
     }
   }
 }
