@@ -19,19 +19,23 @@ function getFocus() {
 
 // getBody.addEventListener("click", getFocus);
 
-// collapse --------------------------------------------
+// collapse ----------------------------------------------------
 
 // select collapsable section
 const collapse = document.querySelector(".js-collapse");
 
 // select collpse button
-const btnCollapse = document.querySelector(".btn-collapse");
+const btnsCollapse = document.querySelectorAll(".btn-collapse");
 
 // event function (toggle class hidden)
 const makeCollapse = () => collapse.classList.toggle("hidden");
 
 // add event in collapse button
-btnCollapse.addEventListener("click", makeCollapse);
+const btnSelect = btnsCollapse => {
+  for (let i = 0; i < btnsCollapse.length; i++) {
+    btnsCollapse[i].addEventListener("click", makeCollapse);
+  }
+};
 
 // change color -----------------------------------------
 
@@ -49,10 +53,10 @@ const removeClasses = () => {
 };
 
 // add choosed class
-const addChoosedClass = () => {
-  let selectedPalett = event.target.id;
-  visualization.classList.add(selectedPalett);
-};
+// const addChoosedClass = () => {
+//   let selectedPalett = event.target.id;
+//   visualization.classList.add(selectedPalett);
+// };
 
 // event function
 const changePalett = () => {
