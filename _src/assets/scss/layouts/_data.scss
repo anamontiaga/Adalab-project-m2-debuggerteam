@@ -4,11 +4,23 @@
   display: flex;
   flex-direction: column;
   max-width: 281px;
+  margin: auto;
   justify-content: center;
+  border-bottom: 1px solid $colorBorderBottom;
   &__title {
+    margin-top: 27px;
     display: flex;
     flex-direction: row nowrap;
     justify-content: space-between;
+
+    .icon {
+      color: $colorButton;
+      font-size: 18px;
+    }
+    &__btn {
+      font-size: 18px;
+      color: $colorHomeText;
+    }
   }
   &__form {
     display: flex;
