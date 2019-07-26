@@ -1,4 +1,7 @@
 "use strict";
+
+console.log("main");
+
 // Acción boton
 const startButton = document.querySelector(".layout-page__button");
 
