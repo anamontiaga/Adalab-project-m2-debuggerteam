@@ -8,24 +8,15 @@
 @import "layouts/palett-colors";
 @import "layouts/personalization";
 @import "layouts/footer";
+@import "layouts/data";
+@import "layouts/share";
 
 .main {
   background-color: $colorBackground;
+  padding-bottom: 30px;
   @media all and (min-width: $mediaTablet) {
     display: grid;
     grid-template-row: 1fr 1fr 1fr;
     grid-template-columns: 400px 1fr;
-  }
-}
-
-.hidden {
-  padding: 30px 0 7px;
-
-  .design__title {
-    margin: 0;
-  }
-  .collapse {
-    display: none;
-    transition: 0.5s ease display;
   }
 }

@@ -19,23 +19,37 @@ function getFocus() {
 
 // getBody.addEventListener("click", getFocus);
 
-// collapse ----------------------------------------------------
+// collapse ---------------------------------------------
 
 // select collapsable section
-const collapse = document.querySelector(".js-collapse");
+const designCollapsableArea = document.querySelector(".design.js-collapse");
+const dataCollapsableArea = document.querySelector(".data.js-collapse");
+const shareCollapsableArea = document.querySelector(".share.js-collapse");
 
+const collapsableAreas = [
+  designCollapsableArea,
+  dataCollapsableArea,
+  shareCollapsableArea
+];
 // select collpse button
-const btnsCollapse = document.querySelectorAll(".btn-collapse");
+const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
 // event function (toggle class hidden)
-const makeCollapse = () => collapse.classList.toggle("hidden");
+const makeDesignCollapse = () => {
+  designCollapsableArea.classList.toggle("hidden");
+};
+const makeDataCollapse = () => {
+  dataCollapsableArea.classList.toggle("hidden");
+};
+const makeShareCollapse = () => {
+  shareCollapsableArea.classList.toggle("hidden");
+};
+
+btnsCollapse[0].addEventListener("click", makeDesignCollapse);
+btnsCollapse[1].addEventListener("click", makeDataCollapse);
+btnsCollapse[2].addEventListener("click", makeShareCollapse);
 
 // add event in collapse button
-const btnSelect = btnsCollapse => {
-  for (let i = 0; i < btnsCollapse.length; i++) {
-    btnsCollapse[i].addEventListener("click", makeCollapse);
-  }
-};
 
 // change color -----------------------------------------
 
@@ -45,6 +59,8 @@ const visualization = document.querySelector(".visualization");
 //select palett divs
 const palettList = document.querySelector(".js-palett-choose");
 
+const palettBtns = document.querySelectorAll(".js-palett-btn");
+
 // remove existent classes
 const removeClasses = () => {
   for (let i = 1; i < visualization.classList.length; i++) {
@@ -53,16 +69,22 @@ const removeClasses = () => {
 };
 
 // add choosed class
-// const addChoosedClass = () => {
-//   let selectedPalett = event.target.id;
-//   visualization.classList.add(selectedPalett);
-// };
-
-// event function
-const changePalett = () => {
-  removeClasses();
-  addChoosedClass();
+const addChoosedClass = event => {
+  let selectedPalett = event.target.id;
+  visualization.classList.add(selectedPalett);
 };
 
-// add event in pallet divs
-palettList.addEventListener("click", changePalett);
+// event function
+const changePalett = event => {
+  removeClasses();
+  addChoosedClass(event);
+};
+
+// add event in palett btn
+const handlePalettBtnsClick = function() {
+  for (let i = 0; i < palettBtns.length; i++) {
+    palettBtns[i].addEventListener("click", changePalett);
+  }
+};
+
+handlePalettBtnsClick(palettBtns);
