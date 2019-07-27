@@ -1,23 +1,22 @@
 "use strict";
 
-// console.log("landing");
+console.log("landing");
 
-// // Acción boton
-// const startButton = document.querySelector(".layout-page__button");
+// Acción boton
+const startButton = document.querySelector(".layout-page__button");
 
-// function handlerGoHome() {
-//   const getHome = (window.location.href = "home.html#home");
-//   return getHome;
-// }
+function handlerGoHome() {
+  const getHome = (window.location.href = "home.html#home");
+  return getHome;
+}
 
-// startButton.addEventListener("click", handlerGoHome);
+startButton.addEventListener("click", handlerGoHome);
 
-// // Focus onclick
-// const getBody = document.querySelector(".layout");
+// Focus onclick
+const getBody = document.querySelector(".layout");
 
-// function getFocus() {
-//   startButton.focus();
-// }
+function getFocus() {
+  startButton.focus();
+}
 
-// getBody.addEventListener("click", getFocus);
-
+getBody.addEventListener("click", getFocus);
