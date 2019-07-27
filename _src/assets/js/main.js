@@ -1,64 +1,44 @@
 "use strict";
 
 // Acción boton
-const startButton = document.querySelector(".layout-page__button");
+// const startButton = document.querySelector(".layout-page__button");
 
-function handlerGoHome() {
-  const getHome = (window.location.href = "home.html#home");
-  return getHome;
-}
+// function handlerGoHome() {
+//   const getHome = (window.location.href = "home.html#home");
+//   return getHome;
+// }
 
 // startButton.addEventListener("click", handlerGoHome);
 
-// Focus onclick
-const getBody = document.querySelector(".layout");
+// // Focus onclick
+// const getBody = document.querySelector(".layout");
 
-function getFocus() {
-  startButton.focus();
-}
+// function getFocus() {
+//   startButton.focus();
+// }
 
 // getBody.addEventListener("click", getFocus);
 
 // collapse ---------------------------------------------
 
-// select collapsable section
-const designCollapsableArea = document.querySelector(".design.js-collapse");
-const dataCollapsableArea = document.querySelector(".data.js-collapse");
-const shareCollapsableArea = document.querySelector(".share.js-collapse");
-
-const collapsableAreas = [
-  designCollapsableArea,
-  dataCollapsableArea,
-  shareCollapsableArea
-];
 // select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
 // event function (toggle class hidden)
-const makeDesignCollapse = () => {
-  designCollapsableArea.classList.toggle("hidden");
-};
-const makeDataCollapse = () => {
-  dataCollapsableArea.classList.toggle("hidden");
-};
-const makeShareCollapse = () => {
-  shareCollapsableArea.classList.toggle("hidden");
+const makeCollapse = event => {
+  event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
 };
 
-btnsCollapse[0].addEventListener("click", makeDesignCollapse);
-btnsCollapse[1].addEventListener("click", makeDataCollapse);
-btnsCollapse[2].addEventListener("click", makeShareCollapse);
-
-// add event in collapse button
+for (let i = 0; i < btnsCollapse.length; i++) {
+  btnsCollapse[i].addEventListener("click", makeCollapse);
+}
 
 // change color -----------------------------------------
 
 // select visualization section
 const visualization = document.querySelector(".visualization");
 
-//select palett divs
-const palettList = document.querySelector(".js-palett-choose");
-
+// select pallet list buttons
 const palettBtns = document.querySelectorAll(".js-palett-btn");
 
 // remove existent classes
@@ -80,7 +60,7 @@ const changePalett = event => {
   addChoosedClass(event);
 };
 
-// add event in palett btn
+// add event in each palett btn
 const handlePalettBtnsClick = function() {
   for (let i = 0; i < palettBtns.length; i++) {
     palettBtns[i].addEventListener("click", changePalett);
