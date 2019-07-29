@@ -19,6 +19,7 @@ const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
 // event function (toggle class hidden)
 const makeCollapse = event => {
+  event.preventDefault();
   event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
 };
 
