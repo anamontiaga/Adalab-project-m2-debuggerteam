@@ -1,19 +1,20 @@
-.blue {
-  .color1 {
-    background-color: blue;
-  }
-  .color2 {
-    background-color: aqua;
-  }
-  .color3 {
-    background-color: azure;
-  }
-}
+.color-pallet {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-basis: 50%;
+  margin-bottom: 20px;
 
-.red {
-  background-color: red;
-}
+  .color-btn {
+    margin-right: 10px;
+  }
 
-.yellow {
-  background-color: yellow;
+  &__colors {
+    display: flex;
+
+    &__box {
+      width: 30px;
+      height: 25px;
+    }
+  }
 }

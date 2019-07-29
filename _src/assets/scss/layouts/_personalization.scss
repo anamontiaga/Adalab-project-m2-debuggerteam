@@ -1,0 +1,38 @@
+.blue {
+  @include personalize(
+    $colorPBluePrimary,
+    $colorPBlueSecondary,
+    $colorPBlueTertiary
+  );
+  @include paletBoxes(
+    $colorPBluePrimary,
+    $colorPBlueSecondary,
+    $colorPBlueTertiary
+  );
+}
+
+.red {
+  @include personalize(
+    $colorPRedPrimary,
+    $colorPRedSecondary,
+    $colorPRedTertiary
+  );
+  @include paletBoxes(
+    $colorPRedPrimary,
+    $colorPRedSecondary,
+    $colorPRedTertiary
+  );
+}
+
+.yell {
+  @include paletBoxes(
+    $colorPYellowPrimary,
+    $colorPYellowSecondary,
+    $colorPYellowTertiary
+  );
+  @include personalize(
+    $colorPYellowPrimary,
+    $colorPYellowSecondary,
+    $colorPYellowTertiary
+  );
+}
