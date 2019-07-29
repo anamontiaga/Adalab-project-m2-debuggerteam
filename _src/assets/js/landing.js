@@ -2,7 +2,7 @@
 
 //Acción boton
 function handlerGoHome() {
-  const getHome = (window.location.href = "home.html#home");
+  const getHome = (window.location.href = "home.html");
   return getHome;
 }
 function getFocus() {
