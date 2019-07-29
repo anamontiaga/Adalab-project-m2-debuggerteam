@@ -10,3 +10,13 @@
 @import "layouts/footer";
 @import "layouts/data";
 @import "layouts/share";
+
+.main {
+  background-color: $colorBackground;
+  padding-bottom: 30px;
+  @media all and (min-width: $mediaTablet) {
+    display: grid;
+    grid-template-row: 1fr 1fr 1fr;
+    grid-template-columns: 400px 1fr;
+  }
+}

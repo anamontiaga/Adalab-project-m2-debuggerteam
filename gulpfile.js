@@ -72,7 +72,7 @@ gulp.task("scripts", function(done) {
     .pipe(
       plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
     )
-    .pipe(concat("main.js"))
+
     .pipe(sourcemaps.write("./"))
     .pipe(gulp.dest(config.js.dest))
     .pipe(browserSync.reload({ stream: true }));
@@ -166,7 +166,7 @@ gulp.task("scripts-dist", function(done) {
     .pipe(
       plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
     )
-    .pipe(concat("main.js"))
+
     .pipe(uglify())
     .pipe(gulp.dest(config.js.dist));
   done();
