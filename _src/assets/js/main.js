@@ -1,4 +1,16 @@
 // collapse ---------------------------------------------
+const mainForm = document.querySelector(".main__form");
+const visualizationForm = document.querySelector(".js-visualizationReset");
+const btnReset = document.querySelector(".js-reset");
+debugger;
+const clearForm = ev => {
+  ev.stopBubbling();
+  ev.preventDefault();
+  mainForm.reset();
+  visualizationForm.reset();
+};
+
+btnReset.addEventListener("click", clearForm);
 
 // select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");

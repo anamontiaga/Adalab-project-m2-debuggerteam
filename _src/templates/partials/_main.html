@@ -1,7 +1,7 @@
 <main class="main">
-  <section class="visualization blue">
+  <form class="visualization blue js-visualizationReset">
     <div class="visualization__wrap">
-      <button class="visualization__reset home--subtitle">
+      <button class="visualization__reset home--subtitle js-reset">
         <i class="visualization__reset__icon far fa-trash-alt"></i>
         Reset
       </button>
@@ -27,8 +27,10 @@
         </ul>
       </div>
     </div>
-  </section>
-  <partial src="_design.html"></partial>
-  <partial src="_data.html"></partial>
-  <partial src="_share.html"></partial>
+  </form>
+  <form class="main__form">
+    <partial src="_design.html"></partial>
+    <partial src="_data.html"></partial>
+    <partial src="_share.html"></partial>
+  </form>
 </main>
