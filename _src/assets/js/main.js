@@ -51,3 +51,22 @@ const handlePalettBtnsClick = function() {
 handlePalettBtnsClick(palettBtns);
 
 // form fill on card
+
+// cogemos el elemento que vamos a escuchar
+const inputForm = document.querySelectorAll(".data__form-item");
+
+const dataCard = document.querySelectorAll(".js-visualization-data");
+
+function sendDataCard() {
+  for (let i = 0; i < dataCard.length; i++) {
+    dataCard[i].innerHTML = inputForm[i].value;
+  }
+}
+
+function addEvent() {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", sendDataCard);
+  }
+}
+
+addEvent();

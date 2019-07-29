@@ -1,14 +1,20 @@
 <main class="main">
   <section class="visualization blue">
     <div class="visualization__wrap">
-      <button class="visualization__reset home--subtitle">
+      <button class="visualization__reset home--subtitle" type="reset">
         <i class="visualization__reset__icon far fa-trash-alt"></i>
         Reset
       </button>
       <div class="visualization__user">
         <div class="text__wrap text--border">
-          <h3 class="visualization__user__name name--color">Nombre Apellido</h3>
-          <p class="visualization__user__job">Front-end developer</p>
+          <h3
+            class="visualization__user__name name--color js-visualization-data"
+          >
+            Nombre Apellido
+          </h3>
+          <p class="visualization__user__job js-visualization-data">
+            Front-end developer
+          </p>
         </div>
         <div class="visualization__user__img"></div>
         <ul class="visualization__user__icon-list">
@@ -28,7 +34,9 @@
       </div>
     </div>
   </section>
-  <partial src="_design.html"></partial>
-  <partial src="_data.html"></partial>
-  <partial src="_share.html"></partial>
+  <form>
+    <partial src="_design.html"></partial>
+    <partial src="_data.html"></partial>
+    <partial src="_share.html"></partial>
+  </form>
 </main>
