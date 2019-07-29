@@ -1,3 +1,5 @@
+/* eslint-disable quotes */
+/* eslint-disable strict */
 // collapse ---------------------------------------------
 
 // select collpse button
@@ -47,3 +49,5 @@ const handlePalettBtnsClick = function() {
 };
 
 handlePalettBtnsClick(palettBtns);
+
+// form fill on card
