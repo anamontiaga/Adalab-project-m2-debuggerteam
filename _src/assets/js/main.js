@@ -1,8 +1,10 @@
+/* eslint-disable quotes */
+/* eslint-disable strict */
 // collapse ---------------------------------------------
 const mainForm = document.querySelector(".main__form");
 const visualizationForm = document.querySelector(".js-visualizationReset");
 const btnReset = document.querySelector(".js-reset");
-debugger;
+
 const clearForm = ev => {
   ev.stopBubbling();
   ev.preventDefault();
@@ -59,3 +61,24 @@ const handlePalettBtnsClick = function() {
 };
 
 handlePalettBtnsClick(palettBtns);
+
+// form fill on card
+
+// cogemos el elemento que vamos a escuchar
+const inputForm = document.querySelectorAll(".data__form-item");
+
+const dataCard = document.querySelectorAll(".js-visualization-data");
+
+function sendDataCard() {
+  for (let i = 0; i < dataCard.length; i++) {
+    dataCard[i].innerHTML = inputForm[i].value;
+  }
+}
+
+function addEvent() {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", sendDataCard);
+  }
+}
+
+addEvent();
