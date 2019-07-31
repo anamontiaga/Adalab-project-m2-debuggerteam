@@ -8,6 +8,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  border: 1px #d8d8d8 solid;
   padding: 0 40px;
   @media all and (min-width: $mediaTablet) {
     flex-direction: row;

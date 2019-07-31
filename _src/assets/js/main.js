@@ -59,3 +59,45 @@ const handlePalettBtnsClick = function() {
 };
 
 handlePalettBtnsClick(palettBtns);
+//Icons beta
+// Email
+const email = document.querySelector(".js-link_email");
+const emailPlace = document.querySelector(".js-email");
+const getEmail = () => {
+  emailPlace.innerHTML =
+    '<a href="mailto:' +
+    email.value +
+    '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+};
+email.addEventListener("change", getEmail);
+debugger;
+//Phone
+const phone = document.querySelector(".js-link_phone");
+const phonePlace = document.querySelector(".js-phone");
+const getPhone = () => {
+  phonePlace.innerHTML =
+    '<a href="tel:+34' +
+    phone.value +
+    '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+};
+phone.addEventListener("change", getPhone);
+//Linkedin
+const linkedin = document.querySelector(".js-link_linkedin");
+const linkedinPlace = document.querySelector(".js-linkedin");
+const getLinkedin = () => {
+  linkedinPlace.innerHTML =
+    '<a href="https://www.linkedin.com/in/' +
+    linkedin.value +
+    '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+};
+linkedin.addEventListener("change", getLinkedin);
+debugger;
+const github = document.querySelector(".js-link_github");
+const githubPlace = document.querySelector(".js-github");
+const getGithub = () => {
+  githubPlace.innerHTML =
+    '<a href="https://github.com/' +
+    github.value +
+    '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+};
+github.addEventListener("change", getGithub);
