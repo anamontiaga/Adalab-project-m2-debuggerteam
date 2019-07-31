@@ -1,18 +1,19 @@
 /* eslint-disable quotes */
 /* eslint-disable strict */
+// reset btn --------------------------------------------
+// const mainForm = document.querySelector(".main__form");
+// const defaultForm = document.querySelector(".js-visualization-data");
+// const btnReset = document.querySelector(".js-reset");
+
+// const clearForm = ev => {
+//   ev.stopBubbling();
+//   ev.preventDefault();
+//   mainForm.reset();
+//   visualizationForm.reset();
+// };
+
+// btnReset.addEventListener("click", clearForm);
 // collapse ---------------------------------------------
-const mainForm = document.querySelector(".main__form");
-const visualizationForm = document.querySelector(".js-visualizationReset");
-const btnReset = document.querySelector(".js-reset");
-
-const clearForm = ev => {
-  ev.stopBubbling();
-  ev.preventDefault();
-  mainForm.reset();
-  visualizationForm.reset();
-};
-
-btnReset.addEventListener("click", clearForm);
 
 // select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
@@ -20,7 +21,13 @@ const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 // event function (toggle class hidden)
 const makeCollapse = event => {
   event.preventDefault();
-  event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
+  if (
+    event.currentTarget &&
+    event.currentTarget.parentElement &&
+    event.currentTarget.parentElement.parentElement
+  ) {
+    event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
+  }
 };
 
 for (let i = 0; i < btnsCollapse.length; i++) {
@@ -76,10 +83,22 @@ function sendDataCard() {
   }
 }
 
-function addEvent() {
+function inputAddEvent() {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
 
-addEvent();
+inputAddEvent();
+
+const inputText = ["Nombre Apellido", "Front-end developer"];
+const clearForm = () => {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].value = "";
+    dataCard[i].innerText = inputText[i];
+  }
+};
+
+const btnReset = document.querySelector(".js-reset");
+
+btnReset.addEventListener("click", clearForm);
