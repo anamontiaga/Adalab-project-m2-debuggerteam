@@ -33,7 +33,12 @@ for (let i = 0; i < btnsCollapse.length; i++) {
 const visualization = document.querySelector(".visualization");
 
 // select pallet list buttons
-const palettBtns = document.querySelectorAll(".js-palett-btn");
+const palettBtns = document.querySelectorAll(".color-pallet");
+console.log (palettBtns);
+
+// //select pallet color box
+// const palettColorBox1 = document.querySelector(".color-pallet__colors")
+
 
 // remove existent classes
 const removeClasses = () => {
@@ -44,7 +49,7 @@ const removeClasses = () => {
 
 // add choosed class
 const addChoosedClass = event => {
-  let selectedPalett = event.target.id;
+  let selectedPalett = event.currentTarget.id;
   visualization.classList.add(selectedPalett);
 };
 
@@ -55,13 +60,24 @@ const changePalett = event => {
 };
 
 // add event in each palett btn
-const handlePalettBtnsClick = function() {
+const handlePalettBtnsClick = function () {
   for (let i = 0; i < palettBtns.length; i++) {
     palettBtns[i].addEventListener("click", changePalett);
   }
 };
 
+// //add event in each palett box
+// const handlePalettColorBox1 = function () {
+//   for (let i = 0; i < palettColorBox1.length; i++) {
+//     palettColorBox1[i].addEventListener("click", changePalett);
+//   }
+// };
+
+
 handlePalettBtnsClick(palettBtns);
+
+// handlePalettColorBox1(palettColorBox1);
+
 
 // form fill on card
 
