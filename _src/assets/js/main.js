@@ -151,3 +151,6 @@ const clearForm = () => {
 const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", clearForm);
+// Use LocalStorage
+const form = document.querySelector(".form__data");
+const setLocalStorage = () => {};
