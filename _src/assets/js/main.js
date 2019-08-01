@@ -60,6 +60,10 @@ const handlePalettBtnsClick = function() {
 
 handlePalettBtnsClick(palettBtns);
 //Icons beta
+// Remove @
+function checkUserName(string) {
+  return string.replace("@", "");
+}
 // Email
 const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
@@ -85,19 +89,22 @@ phone.addEventListener("change", getPhone);
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
+  const linkedinOK = checkUserName(linkedin.value);
   linkedinPlace.innerHTML =
     '<a href="https://www.linkedin.com/in/' +
-    linkedin.value +
+    linkedinOK +
     '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
 };
+debugger;
 linkedin.addEventListener("change", getLinkedin);
 debugger;
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
+  const githubOK = checkUserName(github.value);
   githubPlace.innerHTML =
     '<a href="https://github.com/' +
-    github.value +
+    githubOK +
     '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
 };
 github.addEventListener("change", getGithub);

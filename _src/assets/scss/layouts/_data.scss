@@ -27,7 +27,14 @@
     flex-direction: column;
     justify-content: center;
     &-before {
-      transform: translate(5px, 30px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 19px;
+      font-weight: bold;
+      transform: translate(0px, 37px);
+      background-color: rgba(63, 191, 127, 0.5);
     }
     &__image {
       display: flex;
