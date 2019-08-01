@@ -77,18 +77,6 @@ const inputForm = document.querySelectorAll(".data__form-item");
 
 const dataCard = document.querySelectorAll(".js-visualization-data");
 
-function sendDataCard() {
-  for (let i = 0; i < dataCard.length; i++) {
-    dataCard[i].innerHTML = inputForm[i].value;
-  }
-}
-
-function inputAddEvent() {
-  for (let i = 0; i < dataCard.length; i++) {
-    inputForm[i].addEventListener("keyup", sendDataCard);
-  }
-}
-
 inputAddEvent();
 
 const inputText = ["Nombre Apellido", "Front-end developer"];
@@ -102,3 +90,19 @@ const clearForm = () => {
 const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", clearForm);
+
+function sendDataCard() {
+  for (let i = 0; i < dataCard.length; i++) {
+    if (inputForm[i].value === "") {
+      dataCard[i].innerText = inputText[i];
+    } else {
+      dataCard[i].innerHTML = inputForm[i].value;
+    }
+  }
+}
+
+function inputAddEvent() {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", sendDataCard);
+  }
+}
