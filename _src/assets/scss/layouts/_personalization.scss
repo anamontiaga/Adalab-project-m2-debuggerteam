@@ -36,3 +36,29 @@
     $colorPYellowTertiary
   );
 }
+
+.green {
+  @include paletBoxes(
+    $colorPGreenPrimary,
+    $colorPGreenSecondary,
+    $colorPGreenTertiary
+  );
+  @include personalize(
+    $colorPGreenPrimary,
+    $colorPGreenSecondary,
+    $colorPGreenTertiary
+  );
+}
+
+.purple {
+  @include paletBoxes(
+    $colorPPurplePrimary,
+    $colorPPurpleSecondary,
+    $colorPPurpleTertiary
+  );
+  @include personalize(
+    $colorPPurplePrimary,
+    $colorPPurpleSecondary,
+    $colorPPurpleTertiary
+  );
+}

@@ -9,13 +9,16 @@
   border-bottom: 1px solid $colorBorderBottom;
   &__title {
     margin-top: 27px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: row nowrap;
     justify-content: space-between;
-
-    .icon {
-      color: $colorButton;
+    &__text__icon {
       font-size: 18px;
+      color: $colorButton;
+      margin-right: 10px;
+      width: 21px;
+      height: 18px;
     }
     &__btn {
       font-size: 18px;
@@ -26,10 +29,20 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    &-before {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      width: 19px;
+      font-weight: bold;
+      transform: translate(0px, 37px);
+      background-color: rgba(63, 191, 127, 0.5);
+    }
     &__image {
       display: flex;
       flex-direction: row;
-      padding: 10px;
+      padding: 10px 10px 10px 0;
       &-label {
         color: $colorGreenDark;
         font-family: $font-familyText;
@@ -65,11 +78,13 @@
       margin-top: 7px;
       margin-bottom: 20px;
       border: 1px $colorPBlueTertiary solid;
+      padding: 10px;
+      padding-inline-start: 22px;
+      background-color: transparent;
       &::placeholder {
         font-family: $font-familyText;
         color: #c5c5c5;
         font-size: 14px;
-        padding-inline-start: 10px;
       }
     }
   }
