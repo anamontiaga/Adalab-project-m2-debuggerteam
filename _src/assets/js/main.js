@@ -1,20 +1,7 @@
 /* eslint-disable quotes */
 /* eslint-disable strict */
-// reset btn --------------------------------------------
-// const mainForm = document.querySelector(".main__form");
-// const defaultForm = document.querySelector(".js-visualization-data");
-// const btnReset = document.querySelector(".js-reset");
 
-// const clearForm = ev => {
-//   ev.stopBubbling();
-//   ev.preventDefault();
-//   mainForm.reset();
-//   visualizationForm.reset();
-// };
-
-// btnReset.addEventListener("click", clearForm);
-// collapse ---------------------------------------------
-
+//collapse-------------------------------------------
 // select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
@@ -40,11 +27,9 @@ for (let i = 0; i < btnsCollapse.length; i++) {
 const visualization = document.querySelector(".visualization");
 
 // select pallet list buttons
-const palettBtns = document.querySelectorAll(".color-pallet");
-console.log(palettBtns);
+const palettBoxes = document.querySelectorAll(".color-pallet");
 
-// //select pallet color box
-// const palettColorBox1 = document.querySelector(".color-pallet__colors")
+const palletBtn = document.querySelectorAll(".js-palett-btn");
 
 // remove existent classes
 const removeClasses = () => {
@@ -59,16 +44,21 @@ const addChoosedClass = event => {
   visualization.classList.add(selectedPalett);
 };
 
+const checkBtn = () => {
+  event.currentTarget.firstElementChild.checked = true;
+};
+
 // event function
 const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
+  checkBtn();
 };
 
 // add event in each palett btn
 const handlePalettBtnsClick = function() {
-  for (let i = 0; i < palettBtns.length; i++) {
-    palettBtns[i].addEventListener("click", changePalett);
+  for (let i = 0; i < palettBoxes.length; i++) {
+    palettBoxes[i].addEventListener("click", changePalett);
   }
 };
 
@@ -79,7 +69,7 @@ const handlePalettBtnsClick = function() {
 //   }
 // };
 
-handlePalettBtnsClick(palettBtns);
+handlePalettBtnsClick(palettBoxes);
 //Icons beta
 // Remove @
 function checkUserName(string) {
@@ -95,7 +85,7 @@ const getEmail = () => {
     '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
 };
 email.addEventListener("change", getEmail);
-debugger;
+
 //Phone
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
@@ -116,9 +106,9 @@ const getLinkedin = () => {
     linkedinOK +
     '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
 };
-debugger;
+
 linkedin.addEventListener("change", getLinkedin);
-debugger;
+
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
