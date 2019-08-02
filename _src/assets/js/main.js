@@ -92,12 +92,15 @@ function inputAddEvent() {
 inputAddEvent();
 
 const inputText = ["Nombre Apellido", "Front-end developer"];
+
 const clearForm = () => {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].value = "";
     dataCard[i].innerText = inputText[i];
   }
 };
+
+clearForm();
 
 const btnReset = document.querySelector(".js-reset");
 
