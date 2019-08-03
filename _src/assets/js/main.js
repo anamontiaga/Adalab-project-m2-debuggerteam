@@ -151,6 +151,42 @@ const clearForm = () => {
 const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", clearForm);
+
 // Use LocalStorage
-const form = document.querySelector(".form__data");
-const setLocalStorage = () => {};
+/* const inputForm = document.querySelectorAll(".data__form-item");
+ */
+const inputFormRadio = document.querySelectorAll(".data__form-radio");
+let objectLocalStor = {
+  color: "",
+  name: "",
+  job: "",
+  email: "",
+  telephone: "",
+  linkedin: "",
+  github: ""
+};
+debugger;
+const readInputValue = function() {
+  for (let i = 0; i < inputForm.length; i++) {
+    debugger;
+    const userValue = inputForm[i].value;
+    objectLocalStor[inputForm[i].name] = userValue;
+  }
+  return objectLocalStor;
+};
+const readRadioValue = function() {
+  debugger;
+  for (let i = 0; i < inputFormRadio.length; i++)
+    if (inputFormRadio[i].checked === true) {
+      objectLocalStor["color"] = inputFormRadio[i].id;
+    }
+};
+/* const readRadioValueInv = function() {
+  debugger;
+  for (let i = 0; i < inputFormRadio.length; i++)
+    if (inputFormRadio[i].value === localStorage.color.palete) {
+      inputFormRadio[i].checked = true;
+    }
+}; */
+const proof = document.querySelector(".color-pallet");
+proof.addEventListener("click", readRadioValue);
