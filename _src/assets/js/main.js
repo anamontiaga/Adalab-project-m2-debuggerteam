@@ -1,20 +1,7 @@
 /* eslint-disable quotes */
 /* eslint-disable strict */
-// reset btn --------------------------------------------
-// const mainForm = document.querySelector(".main__form");
-// const defaultForm = document.querySelector(".js-visualization-data");
-// const btnReset = document.querySelector(".js-reset");
 
-// const clearForm = ev => {
-//   ev.stopBubbling();
-//   ev.preventDefault();
-//   mainForm.reset();
-//   visualizationForm.reset();
-// };
-
-// btnReset.addEventListener("click", clearForm);
-// collapse ---------------------------------------------
-
+//collapse-------------------------------------------
 // select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
@@ -40,7 +27,9 @@ for (let i = 0; i < btnsCollapse.length; i++) {
 const visualization = document.querySelector(".visualization");
 
 // select pallet list buttons
-const palettBtns = document.querySelectorAll(".js-palett-btn");
+const palettBoxes = document.querySelectorAll(".color-pallet");
+
+const palletBtn = document.querySelectorAll(".js-palett-btn");
 
 // remove existent classes
 const removeClasses = () => {
@@ -51,24 +40,36 @@ const removeClasses = () => {
 
 // add choosed class
 const addChoosedClass = event => {
-  let selectedPalett = event.target.id;
+  let selectedPalett = event.currentTarget.id;
   visualization.classList.add(selectedPalett);
+};
+
+const checkBtn = () => {
+  event.currentTarget.firstElementChild.checked = true;
 };
 
 // event function
 const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
+  checkBtn();
 };
 
 // add event in each palett btn
 const handlePalettBtnsClick = function() {
-  for (let i = 0; i < palettBtns.length; i++) {
-    palettBtns[i].addEventListener("click", changePalett);
+  for (let i = 0; i < palettBoxes.length; i++) {
+    palettBoxes[i].addEventListener("click", changePalett);
   }
 };
 
-handlePalettBtnsClick(palettBtns);
+// //add event in each palett box
+// const handlePalettColorBox1 = function () {
+//   for (let i = 0; i < palettColorBox1.length; i++) {
+//     palettColorBox1[i].addEventListener("click", changePalett);
+//   }
+// };
+
+handlePalettBtnsClick(palettBoxes);
 //Icons beta
 // Remove @
 function checkUserName(string) {
@@ -84,7 +85,7 @@ const getEmail = () => {
     '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
 };
 email.addEventListener("change", getEmail);
-debugger;
+
 //Phone
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
@@ -105,9 +106,9 @@ const getLinkedin = () => {
     linkedinOK +
     '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
 };
-debugger;
+
 linkedin.addEventListener("change", getLinkedin);
-debugger;
+
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
@@ -119,24 +120,14 @@ const getGithub = () => {
 };
 github.addEventListener("change", getGithub);
 
+// handlePalettColorBox1(palettColorBox1);
+
 // form fill on card
 
 // cogemos el elemento que vamos a escuchar
 const inputForm = document.querySelectorAll(".data__form-item");
 
 const dataCard = document.querySelectorAll(".js-visualization-data");
-
-function sendDataCard() {
-  for (let i = 0; i < dataCard.length; i++) {
-    dataCard[i].innerHTML = inputForm[i].value;
-  }
-}
-
-function inputAddEvent() {
-  for (let i = 0; i < dataCard.length; i++) {
-    inputForm[i].addEventListener("keyup", sendDataCard);
-  }
-}
 
 inputAddEvent();
 
@@ -145,6 +136,7 @@ const clearForm = () => {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].value = "";
     dataCard[i].innerText = inputText[i];
+    removeClasses();
   }
 };
 
@@ -152,6 +144,22 @@ const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", clearForm);
 
+// Si el formulario está vacío, me pinta el inputText, si el formulario está lleno, me pinta los valores que he escrito.
+function sendDataCard() {
+  for (let i = 0; i < dataCard.length; i++) {
+    if (inputForm[i].value === "") {
+      dataCard[i].innerText = inputText[i];
+    } else {
+      dataCard[i].innerHTML = inputForm[i].value;
+    }
+  }
+}
+
+function inputAddEvent() {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", sendDataCard);
+  }
+}
 // Use LocalStorage
 /* const inputForm = document.querySelectorAll(".data__form-item");
  */
