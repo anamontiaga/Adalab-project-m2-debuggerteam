@@ -5,6 +5,9 @@
   border-bottom: 1px solid $colorBorderBottom;
   display: flex;
   flex-direction: column;
+  @media all and (min-width: $mediaTablet) {
+    max-width: 329px;
+  }
 
   &__title {
     display: flex;

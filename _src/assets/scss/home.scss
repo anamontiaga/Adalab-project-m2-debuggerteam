@@ -15,9 +15,15 @@
   background-color: $colorBackground;
   padding-bottom: 30px;
   @media all and (min-width: $mediaTablet) {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 400px 1fr;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}
+.responsive {
+  @media all and (min-width: $mediaTablet) {
+    width: 399px;
+    margin-right: 40px;
+    margin-top: 30px;
   }
 }
 

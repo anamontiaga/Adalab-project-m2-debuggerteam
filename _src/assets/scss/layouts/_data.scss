@@ -7,6 +7,9 @@
   margin: auto;
   justify-content: center;
   border-bottom: 1px solid $colorBorderBottom;
+  @media all and (min-width: $mediaTablet) {
+    max-width: 329px;
+  }
   &__title {
     margin-top: 27px;
     display: flex;
