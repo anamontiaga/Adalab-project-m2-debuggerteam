@@ -165,17 +165,20 @@ function inputAddEvent() {
 /* const inputForm = document.querySelectorAll(".data__form-item");
  */
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
+/* eslint-disable quotes */
+
 let objectLocalStor = {
-  palette: 1,
-  name: "",
-  job: "",
-  phone: "",
-  email: "",
-  linkedin: "",
-  github: "",
-  photo: ""
+  "palette": 1,
+  "name": "",
+  "job": "",
+  "phone": "",
+  "email": "",
+  "linkedin": "",
+  "github": "",
+  "photo": ""
   //  data:image/png;base64,2342ba...
 };
+/* eslint-disable strict */
 // Leer valores de texto
 function readInputValue() {
   for (let i = 0; i < inputForm.length; i++) {
@@ -184,18 +187,21 @@ function readInputValue() {
       objectLocalStor[inputForm[i].name] = "+34 " + inputForm[i].value;
     }
   }
-  return objectLocalStor;
 }
 // Leer valor del input (#id vale?)
 function readRadioForm(ev) {
   debugger;
   const palletChoose = ev.currentTarget;
   objectLocalStor.palette = palletChoose.id;
-  return objectLocalStor;
+  for (let i=0; i<numberValuesToColor;i++){
+
+  }
 }
 // Guardar los datos de la imagen
 
-function readImageValue() {}
+function readImageValue() {
+  objectLocalStor[inputForm.photo] = inputAddEvent.photo.url;
+}
 // Handle para leer cambios en el form
 function createLocalStorage() {
   debugger;
@@ -219,7 +225,8 @@ function setInputValue() {
   }
 }
 function setRadioValue() {
-  palletSaved = objectLocalStor.palette;
+  let palletSaved = objectLocalStor.palette;
+
   for (let i = 0; i < inputFormRadio.childNodes; i++) {
     if (inputFormRadio[i].id === palletSaved) inputFormRadio[i].checked = true;
   }
