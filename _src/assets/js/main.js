@@ -144,7 +144,6 @@ const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", clearForm);
 
-// Si el formulario está vacío, me pinta el inputText, si el formulario está lleno, me pinta los valores que he escrito.
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
