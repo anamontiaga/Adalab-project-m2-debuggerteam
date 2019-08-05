@@ -173,7 +173,7 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
-  return fr.result;
+  readImageValue(fr.result);
  /*  return avatarImg.result; */
 };
 const getImage = () => {
@@ -222,15 +222,12 @@ function readRadioForm(ev) {
 }
 // Guardar los datos de la imagen
 
-function readImageValue() {
-  debugger;
-writeImage();
- return  objectLocalStor.photo = fr.src;
+function readImageValue(src) {
+ return  objectLocalStor.photo = src;
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
   readInputValue();
-  readImageValue();
   saveLocalStorage();
 }
 const form = document.querySelector(".js-data__input");
@@ -244,13 +241,11 @@ function saveLocalStorage() {
 
 // Cargar info en el formulario
 function setInputValue() {
+  const savedData = JSON.parse(localStorage.getItem('objectLocalStor'));
+  return savedData;
+  debugger;
   for (let i = 0; i < inputForm.length; i++) {
-    if (objectLocalStor[inputForm[i].name] === "") {
-      inputForm[i].value = "";
-    } else {
-      inputForm[i].value = objectLocalStor[inputForm[i].name];
-    }
-  }
+    objectLocalStor[inputForm[i].name] 
 }
 function setRadioValue() {
   let palletSaved = objectLocalStor.palette;
@@ -259,6 +254,7 @@ function setRadioValue() {
     if (inputFormRadio[i].id === palletSaved) inputFormRadio[i].checked = true;
   }
 }
+}
 
 function setLocalStorage() {
   debugger;
@@ -266,6 +262,3 @@ function setLocalStorage() {
   setRadioValue();
 }
 setLocalStorage();
-
-// BUTTON TWITTER
-const btnShare = document.querySelector ('.js-saveLocalStorage');
