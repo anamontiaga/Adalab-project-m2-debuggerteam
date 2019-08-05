@@ -46,16 +46,16 @@ Reset</button>
                                 </div>
                                 <div class="visualization__user__img"></div>
                                 <ul class="visualization__user__icon-list">
-                                    <li class="icon-wrap border--color"> <i class="icon fa fa-mobile-alt"></i>
+                                    <li class="icon-wrap border--color js-phone"> <i class="icon fa fa-mobile-alt"></i>
 
                                     </li>
-                                    <li class="icon-wrap border--color"> <i class="icon fa fa-envelope"></i>
+                                    <li class="icon-wrap border--color js-email"> <i class="icon fa fa-envelope"></i>
 
                                     </li>
-                                    <li class="icon-wrap border--color"> <i class="icon fab fa-linkedin-in"></i>
+                                    <li class="icon-wrap border--color js-linkedin"> <i class="icon fab fa-linkedin-in"></i>
 
                                     </li>
-                                    <li class="icon-wrap border--color"> <i class="icon fab fa-github-alt"></i>
+                                    <li class="icon-wrap border--color js-github"> <i class="icon fab fa-github-alt"></i>
 
                                     </li>
                                 </ul>
@@ -76,33 +76,32 @@ Reset</button>
                 <div class="design__colors collapse">
                     <p class="design__colors__text home--subtitle">Colores</p>
                     <div class="design__colors__choose js-palett-choose">
-                        <div class="color-pallet blue">
-                            <input id="blue" type="radio" name="radio" class="color-btn js-palett-btn"
-                            />
+                        <div class="color-pallet blue" id="blue">
+                            <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
                                 <div class="color-pallet__colors__box box-2"></div>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
-                        <div class="color-pallet red">
-                            <input id="red" type="radio" name="radio" class="color-btn js-palett-btn"
-                            />
+                        <div class="color-pallet red" id="red">
+                            <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
                                 <div class="color-pallet__colors__box box-2"></div>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
-                        <div class="color-pallet yell">
-                            <input id="yell" type="radio" name="radio" class="color-btn js-palett-btn"
-                            />
+                        <div class="color-pallet yell" id="yell">
+                            <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
                                 <div class="color-pallet__colors__box box-2"></div>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
+                        <partial src="_palett-colors.html" colorClass="green" id="green"></partial>
+                        <partial src="_palett-colors.html" colorClass="pur" id="pur"></partial>
                     </div>
                 </div>
             </section>
@@ -131,24 +130,27 @@ Reset</button>
                             <div class="data__form__image-thumbnail"></div>
                         </div>
                         <label for="email" class="data__form-label">Email</label>
-                        <input type="email" name="email" class="data__form-item"
+                        <input type="email" name="email" class="data__form-item js-link_email"
                         placeholder="Ej: adalab@gmail.com" />
-                        <label for="job" class="data__form-label">Puesto</label>
-                        <input type="tel" name="job" class="data__form-item" placeholder="Ej: 632-54-12-36"
-                        />
+                        <label for="job" class="data__form-label">Teléfono</label>
+                        <input type="tel" name="job" class="data__form-item js-link_phone"
+                        placeholder="Ej: 632-54-12-36" />
                         <label for="linkedin" class="data__form-label">LinkedIn</label>
-                        <input type="text" name="linkedin" class="data__form-item"
-                        placeholder="Ej: www.linkedin.com/in/sally.hill" />
-                        <label for="github" class="data__form-label">GitHub</label>
-                        <input type="text" name="github" class="data__form-item"
-                        placeholder="Ej: @sallyHill" />
+                        <input type="text" name="linkedin" class="data__form-item js-link_linkedin"
+                        placeholder="Ej: sally.hill" />
+                        <label for="github" class="data__form-label">GitHub</label> <span class="data__form-before">@</span>
+
+                        <input type="text"
+                        name="github" class="data__form-item js-link_github" placeholder="Ej: @sallyHill"
+                        />
                     </div>
                 </div>
             </section>
             <section class="share js-collapse">
                 <div class="share__title">
                      <h2 class="share__title__text home--title">
-      <i class="share__title__icon fas fa-share-alt"></i></i> Comparte
+      <i class="share__title__icon fas fa-share-alt"></i>
+      Comparte
     </h2>
 
                     <button class="share__title__btn js-btn-collapse"> <i class="fa fa-chevron-up"></i>
@@ -160,12 +162,13 @@ Reset</button>
 
                     </button>
                 </div>
-                <div class="share__twitter collapse">
+                <div class="share__twitter ">
                      <h3 class="share__twitter__title">La tarjeta ha sido creada:</h3>
  <small class="share__twitter__link">https://awesome-profile-card.com?id=A456DF0001</small
     >
-    <button class="share__twitter__btn">Compartir en twitter
-        <i class="share__twitter__icon fab fa-twitter"></i>
+    <button class="share__twitter__btn">
+      Compartir en twitter
+      <i class="share__twitter__icon fab fa-twitter"></i>
     </button>
   </div>
 </section>
