@@ -165,36 +165,21 @@ function inputAddEvent() {
  */
 const inputFormRadio = document.querySelectorAll(".data__form-radio");
 let objectLocalStor = {
-  color: "",
-  name: "",
-  job: "",
-  email: "",
-  telephone: "",
-  linkedin: "",
-  github: ""
+  palette: 1,
+  name: "María García",
+  job: "Front-end developer",
+  phone: "+34 666666666",
+  email: "mariagar@example.com",
+  linkedin: "mariagar",
+  github: "mariagar",
+  photo: "data:image/png;base64,2342ba..."
 };
-debugger;
-const readInputValue = function() {
+
+function readInputValue() {
+  debugger;
   for (let i = 0; i < inputForm.length; i++) {
-    debugger;
-    const userValue = inputForm[i].value;
-    objectLocalStor[inputForm[i].name] = userValue;
+    objectLocalStor[inputForm[i].name] = inputForm[i].value;
   }
   return objectLocalStor;
-};
-const readRadioValue = function() {
-  debugger;
-  for (let i = 0; i < inputFormRadio.length; i++)
-    if (inputFormRadio[i].checked === true) {
-      objectLocalStor["color"] = inputFormRadio[i].id;
-    }
-};
-/* const readRadioValueInv = function() {
-  debugger;
-  for (let i = 0; i < inputFormRadio.length; i++)
-    if (inputFormRadio[i].value === localStorage.color.palete) {
-      inputFormRadio[i].checked = true;
-    }
-}; */
-const proof = document.querySelector(".color-pallet");
-proof.addEventListener("click", readRadioValue);
+}
+readInputValue();
