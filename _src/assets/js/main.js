@@ -186,10 +186,11 @@ const getImage = () => {
 uploadImage.addEventListener("change", getImage);
 
 // API --------------------------------------------
-var submitButton = document.querySelector("#submit");
-var responseURL = document.querySelector(".response");
-var form = document.querySelector("form");
-var fr = new FileReader();
+
+const submitButton = document.querySelector("#submit");
+const responseURL = document.querySelector("#response");
+const form = document.querySelector("form");
+// var fr = new FileReader();
 
 submitButton.addEventListener("click", loadPhoto);
 
@@ -201,11 +202,11 @@ function sendData() {
   sendRequest(json);
 }
 
-function loadPhoto() {
-  var myFile = document.querySelector("#img-selector").files[0];
-  fr.addEventListener("load", sendData);
-  fr.readAsDataURL(myFile);
-}
+// function loadPhoto() {
+//   var myFile = document.querySelector("#img-selector").files[0];
+//   fr.addEventListener("load", sendData);
+//   fr.readAsDataURL(myFile);
+// }
 
 function getJSONFromInputs(inputs) {
   return inputs.reduce(function(acc, val) {
