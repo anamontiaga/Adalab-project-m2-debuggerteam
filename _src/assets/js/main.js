@@ -167,18 +167,22 @@ function inputAddEvent() {
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 let objectLocalStor = {
   palette: 1,
-  name: "María García",
-  job: "Front-end developer",
-  phone: "+34 666666666",
-  email: "mariagar@example.com",
-  linkedin: "mariagar",
-  github: "mariagar",
-  photo: "data:image/png;base64,2342ba..."
+  name: "",
+  job: "",
+  phone: "",
+  email: "",
+  linkedin: "",
+  github: "",
+  photo: ""
+  //  data:image/png;base64,2342ba...
 };
 // Leer valores de texto
 function readInputValue() {
   for (let i = 0; i < inputForm.length; i++) {
     objectLocalStor[inputForm[i].name] = inputForm[i].value;
+    if (inputForm[i] === phone) {
+      objectLocalStor[inputForm[i].name] = "+34 " + inputForm[i].value;
+    }
   }
   return objectLocalStor;
 }
@@ -200,3 +204,30 @@ function createLocalStorage() {
 const form = document.querySelector(".js-data__input");
 
 form.addEventListener("keyup", createLocalStorage);
+// Save Local Storage
+function saveLocalStorage() {
+  localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
+}
+// Cargar info en el formulario
+function setInputValue() {
+  for (let i = 0; i < inputForm.length; i++) {
+    if (objectLocalStor[inputForm[i].name] === "") {
+      inputForm[i].value = "";
+    } else {
+      inputForm[i].value = objectLocalStor[inputForm[i].name];
+    }
+  }
+}
+function setRadioValue() {
+  palletSaved = objectLocalStor.palette;
+  for (let i = 0; i < inputFormRadio.childNodes; i++) {
+    if (inputFormRadio[i].id === palletSaved) inputFormRadio[i].checked = true;
+  }
+}
+
+function setLocalStorage() {
+  debugger;
+  setInputValue();
+  setRadioValue();
+}
+setLocalStorage();

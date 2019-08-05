@@ -32,6 +32,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    &-before {
+      transform: translateY(36px);
+      background-color: $colorPBlueSecondary;
+      width: 20px;
+      text-align: center;
+      margin-top: -20px;
+      padding-top: 5px;
+      height: 23px;
+    }
     &__image {
       display: flex;
       flex-direction: row;
@@ -71,11 +80,11 @@
       margin-top: 7px;
       margin-bottom: 20px;
       border: 1px $colorPBlueTertiary solid;
+      padding-inline-start: 25px;
       &::placeholder {
         font-family: $font-familyText;
         color: #c5c5c5;
         font-size: 14px;
-        padding-inline-start: 10px;
       }
     }
   }
