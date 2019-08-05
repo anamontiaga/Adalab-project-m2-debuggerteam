@@ -159,3 +159,27 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
+
+// PHOTO
+const uploadImage = document.querySelector("#photo");
+const miniAvatar = document.querySelector(".data__form__image-thumbnail");
+const profileAvatar = document.querySelector(".visualization__user__img");
+
+const avatarImg = document.createElement("img");
+const profileImg = document.createElement("img");
+const fr = new FileReader();
+
+const writeImage = () => {
+  avatarImg.src = fr.result;
+  profileImg.src = fr.result;
+};
+
+const getImage = () => {
+  const myImg = uploadImage.files[0];
+  miniAvatar.appendChild(avatarImg);
+  profileAvatar.appendChild(profileImg);
+  fr.addEventListener("load", writeImage);
+  fr.readAsDataURL(myImg);
+};
+
+uploadImage.addEventListener("change", getImage);
