@@ -166,7 +166,8 @@ const resetPreviewIcons = () => {
 };
 
 const clearPhoto = () => {
-  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+  profileAvatar.style.backgroundImage =
+    'url("./assets/images/blank-profile.png")';
 };
 
 const resetPreview = () => {
