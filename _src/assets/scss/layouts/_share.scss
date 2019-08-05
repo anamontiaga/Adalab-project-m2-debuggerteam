@@ -3,11 +3,16 @@
   max-width: 280px;
   margin: auto;
   border-bottom: 1px solid $colorBorderBottom;
+  display: flex;
+  flex-direction: column;
+  @media all and (min-width: $mediaTablet) {
+    max-width: 329px;
+  }
 
   &__title {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 22px;
+    margin-bottom: 10px;
 
     &__icon {
       font-size: 18px;
@@ -20,6 +25,13 @@
     }
   }
   &__createcard__btn {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid $colorBorderBottom;
+    padding-top: 30px;
+
     &__title {
       height: 50px;
       width: 199px;
@@ -29,10 +41,9 @@
       font-family: $font-familyText;
       font-weight: 400;
       font-size: 18px;
-      margin-left: 60px;
-      margin-bottom: 61px;
       text-transform: uppercase;
       padding: 13px 18px 13px 51px;
+      margin-bottom: 30px;
     }
     &__icon {
       color: white;
@@ -42,14 +53,21 @@
     }
   }
   &__twitter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    display: none; // tarjeta creada
+
     &__title {
       color: $colorHomeText;
       font-family: $font-familyText;
       font-weight: 600;
       font-size: 18px;
       margin-bottom: 5px;
-      display: flex;
-      justify-content: center;
+      padding-top: 20px;
+      padding-bottom: 10px;
     }
     &__btn {
       height: 30px;
@@ -60,9 +78,9 @@
       font-family: $font-familyText;
       font-size: 14px;
       line-height: 1.43;
-      margin-left: 70px;
-      margin-bottom: 61px;
       padding: 3px 9px 7px 38px;
+      position: relative;
+      left: 50px;
     }
     &__icon {
       width: 18px;
@@ -76,24 +94,27 @@
       font-family: $font-familyText;
       font-weight: 600;
       font-size: 12px;
+      min-width: 292px;
       margin-bottom: 10px;
-      display: block;
-      margin-left: -16px;
-      display: flex;
-      justify-content: center;
     }
-    padding: 30px 0 7px;
+  }
+}
+.share__form--wrapper {
+  display: flex;
+  flex-direction: column;
+}
 
-    .share__title {
-      margin: 0;
+.share.hidden {
+  padding: 30px 0 7px;
 
-      &__btn {
-        transform: rotateX(180deg);
-      }
+  .share__title {
+    margin: 0;
+    &__btn {
+      transform: rotateX(180deg);
     }
-    .collapse {
-      display: none;
-      transition: 0.5s ease display;
-    }
+  }
+  .collapse {
+    display: none;
+    transition: 0.5s ease display;
   }
 }
