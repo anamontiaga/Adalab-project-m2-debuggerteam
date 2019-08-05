@@ -12,14 +12,24 @@
   }
   &__title {
     margin-top: 27px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: row nowrap;
     justify-content: space-between;
+<<<<<<< HEAD
 
     &__text__icon {
       color: $colorButton;
       font-size: 18px;
       margin-right: 10px;
+=======
+    &__text__icon {
+      font-size: 18px;
+      color: $colorButton;
+      margin-right: 10px;
+      width: 21px;
+      height: 18px;
+>>>>>>> dev
     }
     &__btn {
       font-size: 18px;
@@ -33,7 +43,7 @@
     &__image {
       display: flex;
       flex-direction: row;
-      padding: 10px;
+      padding: 10px 10px 10px 0;
       &-label {
         color: $colorGreenDark;
         font-family: $font-familyText;
