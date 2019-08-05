@@ -62,15 +62,9 @@ const handlePalettBtnsClick = function() {
   }
 };
 
-// //add event in each palett box
-// const handlePalettColorBox1 = function () {
-//   for (let i = 0; i < palettColorBox1.length; i++) {
-//     palettColorBox1[i].addEventListener("click", changePalett);
-//   }
-// };
-
 handlePalettBtnsClick(palettBoxes);
-//Icons beta
+
+//Icons beta -------------------------------------------
 // Remove @
 function checkUserName(string) {
   return string.replace("@", "");
@@ -120,45 +114,7 @@ const getGithub = () => {
 };
 github.addEventListener("change", getGithub);
 
-// handlePalettColorBox1(palettColorBox1);
-
 // form fill on card
-
-// cogemos el elemento que vamos a escuchar
-const inputForm = document.querySelectorAll(".data__form-item");
-
-const dataCard = document.querySelectorAll(".js-visualization-data");
-
-inputAddEvent();
-
-const inputText = ["Nombre Apellido", "Front-end developer"];
-const clearForm = () => {
-  for (let i = 0; i < dataCard.length; i++) {
-    inputForm[i].value = "";
-    dataCard[i].innerText = inputText[i];
-    removeClasses();
-  }
-};
-
-const btnReset = document.querySelector(".js-reset");
-
-btnReset.addEventListener("click", clearForm);
-
-function sendDataCard() {
-  for (let i = 0; i < dataCard.length; i++) {
-    if (inputForm[i].value === "") {
-      dataCard[i].innerText = inputText[i];
-    } else {
-      dataCard[i].innerHTML = inputForm[i].value;
-    }
-  }
-}
-
-function inputAddEvent() {
-  for (let i = 0; i < dataCard.length; i++) {
-    inputForm[i].addEventListener("keyup", sendDataCard);
-  }
-}
 
 // PHOTO --------------------------------
 const uploadImage = document.querySelector("#photo");
@@ -181,3 +137,62 @@ const getImage = () => {
 };
 
 uploadImage.addEventListener("change", getImage);
+
+// RESET and CLEAR FORM ---------------------------------
+// cogemos el elemento que vamos a escuchar
+const inputForm = document.querySelectorAll(".data__form-item");
+
+const dataCard = document.querySelectorAll(".js-visualization-data");
+
+inputAddEvent();
+
+const inputText = ["Nombre Apellido", "Front-end developer"];
+
+const clearForm = () => {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].value = "";
+    dataCard[i].innerText = inputText[i];
+  }
+};
+
+const resetPreviewColors = () => removeClasses();
+
+const iconsList = [emailPlace, phonePlace, linkedinPlace, githubPlace];
+
+const resetPreviewIcons = () => {
+  for (const item of iconsList) {
+    item.firstChild.style.opacity = 0.5;
+  }
+};
+
+const clearPhoto = () => {
+  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+};
+
+const resetPreview = () => {
+  resetPreviewColors();
+  clearForm();
+  resetPreviewIcons();
+  clearPhoto();
+};
+
+const btnReset = document.querySelector(".js-reset");
+
+btnReset.addEventListener("click", resetPreview);
+
+//Send DATA to preview
+function sendDataCard() {
+  for (let i = 0; i < dataCard.length; i++) {
+    if (inputForm[i].value === "") {
+      dataCard[i].innerText = inputText[i];
+    } else {
+      dataCard[i].innerHTML = inputForm[i].value;
+    }
+  }
+}
+
+function inputAddEvent() {
+  for (let i = 0; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", sendDataCard);
+  }
+}
