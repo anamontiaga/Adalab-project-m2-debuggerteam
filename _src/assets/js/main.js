@@ -53,6 +53,7 @@ const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
   checkBtn();
+  readRadioForm(event);
 };
 
 // add event in each palett btn
@@ -163,7 +164,7 @@ function inputAddEvent() {
 // Use LocalStorage
 /* const inputForm = document.querySelectorAll(".data__form-item");
  */
-const inputFormRadio = document.querySelectorAll(".data__form-radio");
+const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 let objectLocalStor = {
   palette: 1,
   name: "María García",
@@ -174,12 +175,28 @@ let objectLocalStor = {
   github: "mariagar",
   photo: "data:image/png;base64,2342ba..."
 };
-
+// Leer valores de texto
 function readInputValue() {
-  debugger;
   for (let i = 0; i < inputForm.length; i++) {
     objectLocalStor[inputForm[i].name] = inputForm[i].value;
   }
   return objectLocalStor;
 }
-readInputValue();
+// Leer valor del input (#id vale?)
+function readRadioForm(ev) {
+  debugger;
+  const palletChoose = ev.currentTarget;
+  objectLocalStor.palette = palletChoose.id;
+  return objectLocalStor;
+}
+// Guardar los datos de la imagen
+
+function readImageValue() {}
+// Handle para leer cambios en el form
+function createLocalStorage() {
+  debugger;
+  readInputValue();
+}
+const form = document.querySelector(".js-data__input");
+
+form.addEventListener("keyup", createLocalStorage);
