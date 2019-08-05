@@ -73,7 +73,7 @@ const handlePalettBtnsClick = function() {
 handlePalettBtnsClick(palettBoxes);
 //Icons beta
 // Remove @
-function checkUserName(string) {
+function removeAtSymbol(string) {
   return string.replace("@", "");
 }
 // Email
@@ -101,7 +101,7 @@ phone.addEventListener("change", getPhone);
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
-  const linkedinOK = checkUserName(linkedin.value);
+  const linkedinOK = removeAtSymbol(linkedin.value);
   linkedinPlace.innerHTML =
     '<a href="https://www.linkedin.com/in/' +
     linkedinOK +
@@ -113,7 +113,7 @@ linkedin.addEventListener("change", getLinkedin);
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
-  const githubOK = checkUserName(github.value);
+  const githubOK = removeAtSymbol(github.value);
   githubPlace.innerHTML =
     '<a href="https://github.com/' +
     githubOK +
@@ -173,15 +173,15 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
+  return fr.result;
+ /*  return avatarImg.result; */
 };
-
 const getImage = () => {
   const myImg = uploadImage.files[0];
   miniAvatar.appendChild(avatarImg);
   profileAvatar.appendChild(profileImg);
   fr.addEventListener("load", writeImage);
-  const imageURL= fr.readAsDataURL(myImg);
-  return imageURL;
+  fr.readAsDataURL(myImg);
 };
 
 uploadImage.addEventListener("change", getImage);
@@ -201,7 +201,6 @@ let objectLocalStor = {
   "linkedin": "",
   "github": "",
   "photo": ""
-  //  data:image/png;base64,2342ba...
 };
 /* eslint-disable strict */
 // Leer valores de texto
@@ -210,6 +209,8 @@ function readInputValue() {
     objectLocalStor[inputForm[i].name] = inputForm[i].value;
     if (inputForm[i] === phone) {
       objectLocalStor[inputForm[i].name] = "+34 " + inputForm[i].value;
+    } else if (inputForm[i] === github){
+      objectLocalStor[inputForm[i].name] = removeAtSymbol(inputForm[i].value);
     }
   }
 }
@@ -217,28 +218,30 @@ function readInputValue() {
 function readRadioForm(ev) {
   debugger;
   const palletChoose = ev.currentTarget;
-  objectLocalStor.palette = palletChoose.id;
-  for (let i=0; i<numberValuesToColor;i++){
-
-  }
+ objectLocalStor.palette = parseInt(palletChoose.dataset.value)
 }
 // Guardar los datos de la imagen
 
 function readImageValue() {
-  objectLocalStor[inputForm.photo] = inputAddEvent.photo.url;
+  debugger;
+writeImage();
+ return  objectLocalStor.photo = fr.src;
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
-  debugger;
   readInputValue();
+  readImageValue();
+  saveLocalStorage();
 }
 const form = document.querySelector(".js-data__input");
+form.addEventListener("change", createLocalStorage);
 
-form.addEventListener("keyup", createLocalStorage);
 // Save Local Storage
 function saveLocalStorage() {
+  localStorage.removeItem("objectLocalStor");
   localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
 }
+
 // Cargar info en el formulario
 function setInputValue() {
   for (let i = 0; i < inputForm.length; i++) {
@@ -263,3 +266,6 @@ function setLocalStorage() {
   setRadioValue();
 }
 setLocalStorage();
+
+// BUTTON TWITTER
+const btnShare = document.querySelector ('.js-saveLocalStorage');
