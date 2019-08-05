@@ -160,3 +160,53 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
+
+// LOCAL STORAGE PALETTE
+
+const palletChose = document.querySelectorAll(".js-palett-choose");
+
+function getPalletFromLocalStorage() {
+  const colorData = JSON.parse(localStorage.getItem("colorData"));
+  palletBtn.checked = colorData.name;
+}
+
+function handlePallet() {
+  const data = {
+    checked: palletBtn.checked
+  };
+  localStorage.setItem("colorData", JSON.stringify(data));
+}
+
+for (const item of palletChose) {
+  item.addEventListener("click", handlePallet);
+}
+
+getPalletFromLocalStorage();
+
+// LOCAL STORAGE FORM
+
+// const inputForm = document.querySelectorAll(".data__form-item");
+const nameInput = document.querySelector(".js-form_name");
+const jobInput = document.querySelector(".js-form_job");
+const imageInput = document.querySelector(".data__form__image");
+const form = document.querySelector(".data__form");
+
+function getFromLocalStorage() {
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  nameInput.value = userData.name;
+  jobInput.value = userData.job;
+  imageInput.content = userData.image;
+}
+
+function handleInput() {
+  const data = {
+    name: nameInput.value,
+    job: jobInput.value,
+    image: imageInput.content
+  };
+  localStorage.setItem("userData", JSON.stringify(data));
+}
+
+form.addEventListener("keyup", handleInput);
+
+getFromLocalStorage();
