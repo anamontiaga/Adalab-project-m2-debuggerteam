@@ -4,9 +4,8 @@
   margin: auto;
   border-bottom: 1px solid $colorBorderBottom;
 
-  @media all and (max-width: $mediaTablet) {
-    width: 330px;
-    padding-bottom: 0;
+  @media all and (min-width: $mediaTablet) {
+    max-width: 329px;
   }
 
   &__title {
