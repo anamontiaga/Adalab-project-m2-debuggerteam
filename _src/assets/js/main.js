@@ -128,10 +128,12 @@ const profileAvatar = document.querySelector(".visualization__user__img");
 const fr = new FileReader();
 
 const writeImage = () => {
-  miniAvatar.style.backgroundImage = `url('${fr.result}')`;
-  profileAvatar.style.backgroundImage = `url('${fr.result}')`;
-  readImageValue(fr.result);
-  saveLocalStorage();
+  if (fr.result) {
+    miniAvatar.style.backgroundImage = `url('${fr.result}')`;
+    profileAvatar.style.backgroundImage = `url('${fr.result}')`;
+    readImageValue(fr.result);
+    saveLocalStorage();
+  }
   return fr.result;
 };
 
@@ -173,8 +175,9 @@ const resetPreviewIcons = () => {
 };
 
 const clearPhoto = () => {
-  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
-  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+  profileAvatar.style.backgroundImage =
+    'url("./assets/images/blank-profile.png")';
+  miniAvatar.style.backgroundImage = 'url("")';
 };
 
 const resetPreview = () => {
@@ -202,7 +205,6 @@ function sendDataCard() {
 function inputAddEvent() {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].addEventListener("keyup", sendDataCard);
-    }
   }
 }
 // Use LocalStorage
@@ -288,7 +290,6 @@ function setRadioValue() {
 }
 
 function chargeImage() {
-  debugger;
   const savedData = setLocalStorage();
   if (savedData) {
     miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
@@ -333,15 +334,14 @@ const showResultURL = document.querySelector(".share__twitter");
 
 function showURL(objectLocalStor) {
   if (objectLocalStor.success) {
-      responseURL.innerHTML =
-        "<a href=" +
-        objectLocalStor.cardURL +
-        ">" +
-        objectLocalStor.cardURL +
-        "</a>";
-  } else if ( objectLocalStor.error){
+    responseURL.innerHTML =
+      "<a href=" +
+      objectLocalStor.cardURL +
+      ">" +
+      objectLocalStor.cardURL +
+      "</a>";
+  } else if (objectLocalStor.error) {
     responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
-    }
   }
 }
 
