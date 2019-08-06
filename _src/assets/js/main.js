@@ -172,6 +172,7 @@ const resetPreviewIcons = () => {
 
 const clearPhoto = () => {
   profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
 };
 
 const resetPreview = () => {
@@ -201,10 +202,6 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-// PHOTO
-
-uploadImage.addEventListener("change", getImage);
-
 // Use LocalStorage
 /* const inputForm = document.querySelectorAll(".data__form-item");
  */
@@ -262,10 +259,10 @@ function saveLocalStorage() {
 function setLocalStorage() {
   return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
-function replacePrefix() {}
+
 function autoFillInput() {
   const savedData = setLocalStorage();
-  if (savedData !== null) {
+  if (savedData) {
     for (let i = 0; i < inputForm.length; i++) {
       let value = savedData[inputForm[i].name];
       inputForm[i].value = value;
@@ -278,24 +275,32 @@ function autoFillInput() {
 }
 function setRadioValue() {
   const savedData = setLocalStorage();
-  for (let i = 0; i < palletBtn.length; i++) {
-    if (i === savedData.palette) {
-      palletBtn[i - 1].checked = true;
+  if (savedData) {
+    for (let i = 0; i < palletBtn.length; i++) {
+      if (i === savedData.palette) {
+        palletBtn[i - 1].checked = true;
+      }
     }
   }
 }
 
 function chargeImage() {
+  debugger;
   const savedData = setLocalStorage();
-  miniAvatar.style.backgroundImage = savedData[photo];
-  profileAvatar.style.backgroundImage = savedData[photo];
+  if (savedData) {
+    miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
+    profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
+  }
 }
 
 function loadLocalStorage() {
-  //setInputValue();
   autoFillInput();
   setRadioValue();
   chargeImage();
+  getGithub();
+  getEmail();
+  getLinkedin();
+  getPhone();
 }
 loadLocalStorage();
 
