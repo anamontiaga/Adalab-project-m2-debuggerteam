@@ -139,6 +139,7 @@ const clearForm = () => {
     inputForm[i].value = "";
     dataCard[i].innerText = inputText[i];
     removeClasses();
+    localStorage.removeItem("objectLocalStor");
   }
 };
 
@@ -174,7 +175,7 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
-  return (fr.result);
+  return fr.result;
   /*  return avatarImg.result; */
 };
 const getImage = () => {
@@ -194,14 +195,14 @@ const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 /* eslint-disable quotes */
 
 let objectLocalStor = {
-  "palette": 1,
-  "name": "",
-  "job": "",
-  "phone": "",
-  "email": "",
-  "linkedin": "",
-  "github": "",
-  "photo": ""
+  palette: 1,
+  name: "",
+  job: "",
+  phone: "",
+  email: "",
+  linkedin: "",
+  github: "",
+  photo: ""
 };
 /* eslint-disable strict */
 // Leer valores de texto
@@ -210,7 +211,7 @@ function readInputValue() {
     objectLocalStor[inputForm[i].name] = inputForm[i].value;
     if (inputForm[i] === phone) {
       objectLocalStor[inputForm[i].name] = "+34 " + inputForm[i].value;
-    } else if (inputForm[i] === github){
+    } else if (inputForm[i] === github) {
       objectLocalStor[inputForm[i].name] = removeAtSymbol(inputForm[i].value);
     }
   }
@@ -223,7 +224,7 @@ function readRadioForm(ev) {
 // Guardar los datos de la imagen
 
 function readImageValue(src) {
-  return objectLocalStor.photo = src;
+  return (objectLocalStor.photo = src);
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
@@ -241,41 +242,37 @@ function saveLocalStorage() {
 }
 
 // Cargar info en el formulario
-function setLocalStorage(){
-  return JSON.parse(localStorage.getItem('objectLocalStor'));
+function setLocalStorage() {
+  return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
-function replacePrefix (){
-
-}
-function autoFillInput (){
-  debugger
+function replacePrefix() {}
+function autoFillInput() {
   const savedData = setLocalStorage();
-  for (let i=0; i <inputForm.length; i++){
+  for (let i = 0; i < inputForm.length; i++) {
     let value = savedData[inputForm[i].name];
     inputForm[i].value = value;
-    if (inputForm[i].name === 'phone'){
+    if (inputForm[i].name === "phone") {
       const phone = savedData.phone.replace("+34 ", "");
       inputForm[i].value = phone;
     }
   }
 }
-function setRadioValue () {
+function setRadioValue() {
   const savedData = setLocalStorage();
-  for (let i=0;i<palletBtn.length;i++){
-    if (i === savedData.palette){
-      palletBtn[i-1].checked = true;
+  for (let i = 0; i < palletBtn.length; i++) {
+    if (i === savedData.palette) {
+      palletBtn[i - 1].checked = true;
     }
   }
 }
 
-function chargeImage () {
+function chargeImage() {
   const savedData = setLocalStorage();
   avatarImg.src = savedData[photo];
   profileImg.src = savedData[photo];
 }
 
 function loadLocalStorage() {
-
   //setInputValue();
   autoFillInput();
   setRadioValue();
@@ -304,34 +301,44 @@ let buttonShare = document.querySelector(".js-saveLocalStorage");
 //   };
 
 // objectLocalStor
-const responseURL= document.querySelector('.js-response');
-const showResultURL= document.querySelector('.share__twitter');
+const responseURL = document.querySelector(".js-response");
+const showResultURL = document.querySelector(".share__twitter");
 
 function showURL(objectLocalStor) {
   if (objectLocalStor.success) {
-    responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
+    responseURL.innerHTML =
+      "<a href=" +
+      objectLocalStor.cardURL +
+      ">" +
+      objectLocalStor.cardURL +
+      "</a>";
   } else {
-    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
+    responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
   }
-  debugger;
-showResultURL.classList.remove('js-hidden')
+  showResultURL.classList.remove("js-hidden");
 }
-function sendRequest(json){
-  fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
-    method: 'POST',
+function sendRequest(json) {
+  fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
+    method: "POST",
     body: JSON.stringify(json),
     headers: {
-      'content-type': 'application/json'
-    },
+      "content-type": "application/json"
+    }
   })
-    .then(function(resp) { return resp.json(); })
-    .then(function(result) { showURL(result); })
-    .catch(function(error) { console.log(error); });
+    .then(function(resp) {
+      return resp.json();
+    })
+    .then(function(result) {
+      showURL(result);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
-function createCard (ev){
+function createCard(ev) {
   ev.preventDefault();
   sendRequest(objectLocalStor);
   showURL(objectLocalStor);
 }
 
-buttonShare.addEventListener('click', createCard);
+buttonShare.addEventListener("click", createCard);
