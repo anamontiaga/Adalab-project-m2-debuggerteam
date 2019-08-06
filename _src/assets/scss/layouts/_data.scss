@@ -16,20 +16,12 @@
     display: flex;
     flex-direction: row nowrap;
     justify-content: space-between;
-<<<<<<< HEAD
-
-    &__text__icon {
-      color: $colorButton;
-      font-size: 18px;
-      margin-right: 10px;
-=======
     &__text__icon {
       font-size: 18px;
       color: $colorButton;
       margin-right: 10px;
       width: 21px;
       height: 18px;
->>>>>>> dev
     }
     &__btn {
       font-size: 18px;
