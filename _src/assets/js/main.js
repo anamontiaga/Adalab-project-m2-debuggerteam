@@ -130,6 +130,8 @@ const fr = new FileReader();
 const writeImage = () => {
   miniAvatar.style.backgroundImage = `url('${fr.result}')`;
   profileAvatar.style.backgroundImage = `url('${fr.result}')`;
+  readImageValue(fr.result);
+  saveLocalStorage();
   return fr.result;
 };
 
@@ -200,6 +202,7 @@ function sendDataCard() {
 function inputAddEvent() {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].addEventListener("keyup", sendDataCard);
+    }
   }
 }
 // Use LocalStorage
@@ -330,17 +333,18 @@ const showResultURL = document.querySelector(".share__twitter");
 
 function showURL(objectLocalStor) {
   if (objectLocalStor.success) {
-    responseURL.innerHTML =
-      "<a href=" +
-      objectLocalStor.cardURL +
-      ">" +
-      objectLocalStor.cardURL +
-      "</a>";
-  } else {
+      responseURL.innerHTML =
+        "<a href=" +
+        objectLocalStor.cardURL +
+        ">" +
+        objectLocalStor.cardURL +
+        "</a>";
+  } else if ( objectLocalStor.error){
     responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
+    }
   }
-  showResultURL.classList.remove("js-hidden");
 }
+
 function sendRequest(json) {
   fetch("https://us-central1-awesome-cards-c6f0.6f0.coudfunctions.net/card/", {
     method: "POST",
