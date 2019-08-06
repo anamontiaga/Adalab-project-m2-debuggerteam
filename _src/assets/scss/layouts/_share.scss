@@ -58,7 +58,6 @@
     justify-content: center;
     align-content: center;
     text-align: center;
-    display: none; // tarjeta creada
 
     &__title {
       color: $colorHomeText;
@@ -117,4 +116,7 @@
     display: none;
     transition: 0.5s ease display;
   }
+}
+.js-hidden{
+  display: none; // tarjeta creada
 }
