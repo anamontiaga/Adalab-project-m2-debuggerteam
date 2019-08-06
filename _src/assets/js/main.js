@@ -54,6 +54,7 @@ const changePalett = event => {
   addChoosedClass(event);
   checkBtn();
   readRadioForm(event);
+  saveLocalStorage();
 };
 
 // add event in each palett btn
@@ -240,26 +241,25 @@ function saveLocalStorage() {
 }
 
 // Cargar info en el formulario
-function setInputValue(){
+function setLocalStorage(){
   return JSON.parse(localStorage.getItem('objectLocalStor'));
 }
 function replacePrefix (){
-  
+
 }
 function autoFillInput (){
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
-    if (inputForm[i].name === "phone"){
+    if (savedData[inputForm[i].name] === phone){
       const phone = (savedData.phone).replace("+34 ", "");
       inputForm[i].name.value = phone;
-
     }
    inputForm[i].value = value;
   }
 }
 function setRadioValue () {
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
   for (let i=0;i<palletBtn.length;i++){
     if (i === savedData.palette){
       palletBtn[i-1].checked = true;
@@ -268,7 +268,7 @@ function setRadioValue () {
 }
 
 function chargeImage () {
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
     avatarImg.src = savedData[photo];
     profileImg.src = savedData[photo];
 }
