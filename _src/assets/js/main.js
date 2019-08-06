@@ -175,7 +175,7 @@ const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
   return (fr.result);
-  /*  return avatarImg.result; */
+  
 };
 const getImage = () => {
   const myImg = uploadImage.files[0];
@@ -248,7 +248,6 @@ function replacePrefix (){
 
 }
 function autoFillInput (){
-  debugger
   const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
@@ -269,16 +268,19 @@ function setRadioValue () {
 }
 
 function chargeImage () {
+  debugger;
   const savedData = setLocalStorage();
-  avatarImg.src = savedData[photo];
-  profileImg.src = savedData[photo];
+  avatarImg.src = savedData.photo;
+  profileImg.src = savedData.photo;
 }
 
 function loadLocalStorage() {
-
-  //setInputValue();
   autoFillInput();
   setRadioValue();
+  getEmail();
+  getPhone();
+  getGithub();
+  getLinkedin();
   chargeImage();
 }
 loadLocalStorage();
