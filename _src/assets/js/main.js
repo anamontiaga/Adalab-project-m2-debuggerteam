@@ -174,7 +174,7 @@ const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
   readImageValue(fr.result);
- /*  return avatarImg.result; */
+  /*  return avatarImg.result; */
 };
 const getImage = () => {
   const myImg = uploadImage.files[0];
@@ -216,14 +216,14 @@ function readInputValue() {
 }
 // Leer valor del input (#id vale?)
 function readRadioForm(ev) {
-  debugger;
+
   const palletChoose = ev.currentTarget;
- objectLocalStor.palette = parseInt(palletChoose.dataset.value)
+  objectLocalStor.palette = parseInt(palletChoose.dataset.value);
 }
 // Guardar los datos de la imagen
 
 function readImageValue(src) {
- return  objectLocalStor.photo = src;
+  return  objectLocalStor.photo = src;
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
@@ -244,7 +244,7 @@ function setInputValue(){
   return JSON.parse(localStorage.getItem('objectLocalStor'));
 }
 function replacePrefix (){
-  
+
 }
 function autoFillInput (){
   const savedData = setInputValue();
@@ -253,7 +253,7 @@ function autoFillInput (){
     if (inputForm[i].name === phone){
       savedData.phone = (savedData.phone).replace("+34 ", "");
     }
-   inputForm[i].value = value;
+    inputForm[i].value = value;
   }
 }
 function setRadioValue () {
@@ -267,15 +267,61 @@ function setRadioValue () {
 
 function chargeImage () {
   const savedData = setInputValue();
-    avatarImg.src = savedData[photo];
-    profileImg.src = savedData[photo];
+  avatarImg.src = savedData[photo];
+  profileImg.src = savedData[photo];
 }
 
 function loadLocalStorage() {
-  debugger;
+
   //setInputValue();
-  autoFillInput()
+  autoFillInput();
   setRadioValue();
   chargeImage();
 }
 loadLocalStorage();
+
+//  API ---------------------------------------
+
+// Función que recoge la información del usuario y llama a
+// la api externa (cards) para que nos genere la tarjeta de visita.
+// let fullName = document.querySelector(".js-form_name");
+// let job = document.querySelector(".js-form__job");
+let buttonShare = document.querySelector(".js-saveLocalStorage");
+
+// function makeURL () {
+//   const userInfo = {
+//     palette: palletBtn.value,
+//     name: fullName.value,
+//     job: job.value,
+//     phone: phone.value,
+//     email: email.value,
+//     linkedin: linkedin.value,
+//     github: github.value,
+//     photo: fr.result,
+//   };
+
+// objectLocalStor
+
+function sendRequest(json){
+  fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json'
+    },
+  })
+    .then(function(resp) { return resp.json(); })
+    .then(function(result) { showURL(result); })
+    .catch(function(error) { console.log(error); });
+}
+
+function showURL(objectLocalStor) {
+  if (objectLocalStor.success) {
+    responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
+    twitterUrl.href = tweet + objectLocalStor.cardURL;
+  } else {
+    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
+  }
+}
+
+buttonShare.addEventListener('click', writeURL);
