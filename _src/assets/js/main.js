@@ -284,10 +284,11 @@ function setRadioValue() {
 }
 
 function chargeImage() {
+  debugger;
   const savedData = setLocalStorage();
   if (savedData){
-  miniAvatar.style.backgroundImage = savedData[photo];
-  profileAvatar.style.backgroundImage = savedData[photo];
+    miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
+    profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
   }
 }
 
@@ -295,6 +296,10 @@ function loadLocalStorage() {
   autoFillInput();
   setRadioValue();
   chargeImage();
+  getGithub();
+  getEmail();
+  getLinkedin();
+  getPhone();
 }
 loadLocalStorage();
 
