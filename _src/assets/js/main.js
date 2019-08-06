@@ -173,7 +173,7 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
-  readImageValue(fr.result);
+  return (fr.result);
  /*  return avatarImg.result; */
 };
 const getImage = () => {
@@ -216,18 +216,18 @@ function readInputValue() {
 }
 // Leer valor del input (#id vale?)
 function readRadioForm(ev) {
-  debugger;
   const palletChoose = ev.currentTarget;
  objectLocalStor.palette = parseInt(palletChoose.dataset.value)
 }
 // Guardar los datos de la imagen
 
 function readImageValue(src) {
- return  objectLocalStor.photo = src;
+    return objectLocalStor.photo = src;
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
   readInputValue();
+  readImageValue(writeImage())
   saveLocalStorage();
 }
 const form = document.querySelector(".js-data__input");
@@ -250,8 +250,10 @@ function autoFillInput (){
   const savedData = setInputValue();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
-    if (inputForm[i].name === phone){
-      savedData.phone = (savedData.phone).replace("+34 ", "");
+    if (inputForm[i].name === "phone"){
+      const phone = (savedData.phone).replace("+34 ", "");
+      inputForm[i].name.value = phone;
+
     }
    inputForm[i].value = value;
   }
