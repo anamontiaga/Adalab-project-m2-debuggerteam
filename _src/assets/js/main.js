@@ -303,7 +303,17 @@ let buttonShare = document.querySelector(".js-saveLocalStorage");
 //   };
 
 // objectLocalStor
+const responseURL= document.querySelector('.js-response');
+const showResultURL= document.querySelector('.share__twitter');
 
+function showURL(objectLocalStor) {
+  if (objectLocalStor.success) {
+    responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
+  } else {
+    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
+  }
+showResultURL.classList.remove('.js-hidden')
+}
 function sendRequest(json){
   fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
     method: 'POST',
@@ -316,14 +326,10 @@ function sendRequest(json){
     .then(function(result) { showURL(result); })
     .catch(function(error) { console.log(error); });
 }
-
-function showURL(objectLocalStor) {
-  if (objectLocalStor.success) {
-    responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
-    twitterUrl.href = tweet + objectLocalStor.cardURL;
-  } else {
-    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
-  }
+function createCard (ev){
+  ev.preventDefault();
+  sendRequest(objectLocalStor);
+  showURL(objectLocalStor);
 }
 
-buttonShare.addEventListener('click', writeURL);
+buttonShare.addEventListener('click', createCard);
