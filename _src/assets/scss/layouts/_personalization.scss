@@ -37,7 +37,7 @@
   );
 }
 
-.green {
+.gre {
   @include paletBoxes(
     $colorPGreenPrimary,
     $colorPGreenSecondary,
@@ -50,7 +50,7 @@
   );
 }
 
-.purple {
+.pur {
   @include paletBoxes(
     $colorPPurplePrimary,
     $colorPPurpleSecondary,
