@@ -201,10 +201,6 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-// PHOTO
-
-uploadImage.addEventListener("change", getImage);
-
 // Use LocalStorage
 /* const inputForm = document.querySelectorAll(".data__form-item");
  */
@@ -262,8 +258,9 @@ function saveLocalStorage() {
 function setLocalStorage() {
   return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
-function replacePrefix() {}
+
 function autoFillInput() {
+  debugger;
   const savedData = setLocalStorage();
   for (let i = 0; i < inputForm.length; i++) {
     let value = savedData[inputForm[i].name];
@@ -276,17 +273,21 @@ function autoFillInput() {
 }
 function setRadioValue() {
   const savedData = setLocalStorage();
+  if (savedData){
   for (let i = 0; i < palletBtn.length; i++) {
     if (i === savedData.palette) {
-      palletBtn[i - 1].checked = true;
+      palletBtn[i-1].checked = true;
     }
+  }
   }
 }
 
 function chargeImage() {
   const savedData = setLocalStorage();
+  if (savedData){
   miniAvatar.style.backgroundImage = savedData[photo];
   profileAvatar.style.backgroundImage = savedData[photo];
+  }
 }
 
 function loadLocalStorage() {
