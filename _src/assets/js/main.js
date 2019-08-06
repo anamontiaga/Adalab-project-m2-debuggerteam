@@ -248,14 +248,15 @@ function replacePrefix (){
 
 }
 function autoFillInput (){
+  debugger
   const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
-    if (savedData[inputForm[i].name] === phone){
-      const phone = (savedData.phone).replace("+34 ", "");
-      inputForm[i].name.value = phone;
-    }
     inputForm[i].value = value;
+    if (inputForm[i].name === 'phone'){
+      const phone = savedData.phone.replace("+34 ", "");
+      inputForm[i].value = phone;
+    }
   }
 }
 function setRadioValue () {
@@ -312,7 +313,8 @@ function showURL(objectLocalStor) {
   } else {
     responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
   }
-showResultURL.classList.remove('.js-hidden')
+  debugger;
+showResultURL.classList.remove('js-hidden')
 }
 function sendRequest(json){
   fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
