@@ -262,27 +262,28 @@ function setLocalStorage() {
   return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
 
-function autoFillInput() {
+function autoFillInput (){
+
   const savedData = setLocalStorage();
   if (savedData){
-  for (let i = 0; i < inputForm.length; i++) {
-    let value = savedData[inputForm[i].name];
-    inputForm[i].value = value;
-    if (inputForm[i].name === "phone") {
-      const phone = savedData.phone.replace("+34 ", "");
-      inputForm[i].value = phone;
-    }
+    for (let i = 0; i < inputForm.length; i++) {
+      let value = savedData[inputForm[i].name];
+      inputForm[i].value = value;
+      if (inputForm[i].name === "phone") {
+        const phone = savedData.phone.replace("+34 ", "");
+        inputForm[i].value = phone;
+      }
     }
   }
 }
 function setRadioValue() {
   const savedData = setLocalStorage();
   if (savedData){
-  for (let i = 0; i < palletBtn.length; i++) {
-    if (i === savedData.palette) {
-      palletBtn[i-1].checked = true;
+    for (let i = 0; i < palletBtn.length; i++) {
+      if (i === savedData.palette) {
+        palletBtn[i-1].checked = true;
+      }
     }
-  }
   }
 }
 
@@ -327,21 +328,24 @@ let buttonShare = document.querySelector(".js-saveLocalStorage");
 //   };
 
 // objectLocalStor
-const responseURL = document.querySelector(".js-response");
-const showResultURL = document.querySelector(".share__twitter");
+const responseURL= document.querySelector('.js-response');
+const showResultURL= document.querySelector('.share__twitter');
+// Twitter //
+// const btnTwitter = document.querySelector('.js-btn-twitter');
+const twitterURL = document.querySelector('.js-twitter-url');
+const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
+
 
 function showURL(objectLocalStor) {
   if (objectLocalStor.success) {
-      responseURL.innerHTML =
-        "<a href=" +
-        objectLocalStor.cardURL +
-        ">" +
-        objectLocalStor.cardURL +
-        "</a>";
-  } else if ( objectLocalStor.error){
+    responseURL.innerHTML = "<a href='" + objectLocalStor.cardURL + ">" + objectLocalStor.cardURL + "'</a>";
+    twitterURL.href = tweet + objectLocalStor.cardURL;
+  } else {
     responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
     }
   }
+
+  showResultURL.classList.remove('js-hidden');
 }
 
 function sendRequest(json) {
@@ -350,8 +354,7 @@ function sendRequest(json) {
     body: JSON.stringify(json),
     headers: {
       "content-type": "application/json"
-    }
-  })
+    })
     .then(function(resp) {
       return resp.json();
     })
@@ -361,6 +364,7 @@ function sendRequest(json) {
     .catch(function(error) {
       console.log(error);
     });
+  }
 }
 function createCard(ev) {
   ev.preventDefault();
@@ -368,4 +372,4 @@ function createCard(ev) {
   showURL(objectLocalStor);
 }
 
-buttonShare.addEventListener("click", createCard);
+buttonShare.addEventListener('click', createCard);
