@@ -53,10 +53,9 @@
       &-thumbnail {
         width: 30px;
         height: 30px;
-        img {
-          height: 100%;
-          width: 100%;
-        }
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
       &-button {
         width: 140px;
