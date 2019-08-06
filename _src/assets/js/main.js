@@ -162,29 +162,28 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-// PHOTO
+// PHOTO --------------------------------
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
 const profileAvatar = document.querySelector(".visualization__user__img");
 
-const avatarImg = document.createElement("img");
-const profileImg = document.createElement("img");
+// const avatarImg = document.createElement("img");
+// const profileImg = document.createElement("img");
 const fr = new FileReader();
 
 const writeImage = () => {
-  avatarImg.src = fr.result;
-  profileImg.src = fr.result;
+  miniAvatar.style.backgroundImage = `url('${fr.result}')`;
+  profileAvatar.style.backgroundImage = `url('${fr.result}')`;
   return (fr.result);
-  
-};
-const getImage = () => {
-  const myImg = uploadImage.files[0];
-  miniAvatar.appendChild(avatarImg);
-  profileAvatar.appendChild(profileImg);
-  fr.addEventListener("load", writeImage);
-  fr.readAsDataURL(myImg);
 };
 
+const getImage = () => {
+  debugger;
+  const myImg = uploadImage.files[0];
+  fr.addEventListener("load", writeImage);
+  fr.readAsDataURL(myImg);
+  readImageValue(writeImage());
+};
 uploadImage.addEventListener("change", getImage);
 
 // Use LocalStorage
@@ -240,13 +239,11 @@ function saveLocalStorage() {
   localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
 }
 
-// Cargar info en el formulario
+// Cargar info en el formulario arrancar pagina
 function setLocalStorage(){
   return JSON.parse(localStorage.getItem('objectLocalStor'));
 }
-function replacePrefix (){
 
-}
 function autoFillInput (){
   const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
@@ -268,10 +265,9 @@ function setRadioValue () {
 }
 
 function chargeImage () {
-  debugger;
   const savedData = setLocalStorage();
-  avatarImg.src = savedData.photo;
-  profileImg.src = savedData.photo;
+  miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
+  profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
 }
 
 function loadLocalStorage() {
