@@ -53,6 +53,8 @@ const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
   checkBtn();
+  readRadioForm(event);
+  saveLocalStorage();
 };
 
 // add event in each palett btn
@@ -72,7 +74,7 @@ const handlePalettBtnsClick = function() {
 handlePalettBtnsClick(palettBoxes);
 //Icons beta
 // Remove @
-function checkUserName(string) {
+function removeAtSymbol(string) {
   return string.replace("@", "");
 }
 // Email
@@ -100,7 +102,7 @@ phone.addEventListener("change", getPhone);
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
-  const linkedinOK = checkUserName(linkedin.value);
+  const linkedinOK = removeAtSymbol(linkedin.value);
   linkedinPlace.innerHTML =
     '<a href="https://www.linkedin.com/in/' +
     linkedinOK +
@@ -112,7 +114,7 @@ linkedin.addEventListener("change", getLinkedin);
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
-  const githubOK = checkUserName(github.value);
+  const githubOK = removeAtSymbol(github.value);
   githubPlace.innerHTML =
     '<a href="https://github.com/' +
     githubOK +
@@ -160,7 +162,6 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-
 // PHOTO
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
@@ -173,8 +174,9 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
+  return (fr.result);
+  /*  return avatarImg.result; */
 };
-
 const getImage = () => {
   const myImg = uploadImage.files[0];
   miniAvatar.appendChild(avatarImg);
@@ -184,3 +186,152 @@ const getImage = () => {
 };
 
 uploadImage.addEventListener("change", getImage);
+
+// Use LocalStorage
+/* const inputForm = document.querySelectorAll(".data__form-item");
+ */
+const inputFormRadio = document.querySelectorAll(".js-palett-choose");
+/* eslint-disable quotes */
+
+let objectLocalStor = {
+  "palette": 1,
+  "name": "",
+  "job": "",
+  "phone": "",
+  "email": "",
+  "linkedin": "",
+  "github": "",
+  "photo": ""
+};
+/* eslint-disable strict */
+// Leer valores de texto
+function readInputValue() {
+  for (let i = 0; i < inputForm.length; i++) {
+    objectLocalStor[inputForm[i].name] = inputForm[i].value;
+    if (inputForm[i] === phone) {
+      objectLocalStor[inputForm[i].name] = "+34 " + inputForm[i].value;
+    } else if (inputForm[i] === github){
+      objectLocalStor[inputForm[i].name] = removeAtSymbol(inputForm[i].value);
+    }
+  }
+}
+// Leer valor del input (#id vale?)
+function readRadioForm(ev) {
+  const palletChoose = ev.currentTarget;
+  objectLocalStor.palette = parseInt(palletChoose.dataset.value);
+}
+// Guardar los datos de la imagen
+
+function readImageValue(src) {
+  return objectLocalStor.photo = src;
+}
+// Handle para leer cambios en el form
+function createLocalStorage() {
+  readInputValue();
+  readImageValue(writeImage());
+  saveLocalStorage();
+}
+const form = document.querySelector(".js-data__input");
+form.addEventListener("change", createLocalStorage);
+
+// Save Local Storage
+function saveLocalStorage() {
+  localStorage.removeItem("objectLocalStor");
+  localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
+}
+
+// Cargar info en el formulario
+function setLocalStorage(){
+  return JSON.parse(localStorage.getItem('objectLocalStor'));
+}
+function replacePrefix (){
+
+}
+function autoFillInput (){
+  debugger
+  const savedData = setLocalStorage();
+  for (let i=0; i <inputForm.length; i++){
+    let value = savedData[inputForm[i].name];
+    inputForm[i].value = value;
+    if (inputForm[i].name === 'phone'){
+      const phone = savedData.phone.replace("+34 ", "");
+      inputForm[i].value = phone;
+    }
+  }
+}
+function setRadioValue () {
+  const savedData = setLocalStorage();
+  for (let i=0;i<palletBtn.length;i++){
+    if (i === savedData.palette){
+      palletBtn[i-1].checked = true;
+    }
+  }
+}
+
+function chargeImage () {
+  const savedData = setLocalStorage();
+  avatarImg.src = savedData[photo];
+  profileImg.src = savedData[photo];
+}
+
+function loadLocalStorage() {
+
+  //setInputValue();
+  autoFillInput();
+  setRadioValue();
+  chargeImage();
+}
+loadLocalStorage();
+
+//  API ---------------------------------------
+
+// Función que recoge la información del usuario y llama a
+// la api externa (cards) para que nos genere la tarjeta de visita.
+// let fullName = document.querySelector(".js-form_name");
+// let job = document.querySelector(".js-form__job");
+let buttonShare = document.querySelector(".js-saveLocalStorage");
+
+// function makeURL () {
+//   const userInfo = {
+//     palette: palletBtn.value,
+//     name: fullName.value,
+//     job: job.value,
+//     phone: phone.value,
+//     email: email.value,
+//     linkedin: linkedin.value,
+//     github: github.value,
+//     photo: fr.result,
+//   };
+
+// objectLocalStor
+const responseURL= document.querySelector('.js-response');
+const showResultURL= document.querySelector('.share__twitter');
+
+function showURL(objectLocalStor) {
+  if (objectLocalStor.success) {
+    responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
+  } else {
+    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
+  }
+  debugger;
+showResultURL.classList.remove('js-hidden')
+}
+function sendRequest(json){
+  fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
+    method: 'POST',
+    body: JSON.stringify(json),
+    headers: {
+      'content-type': 'application/json'
+    },
+  })
+    .then(function(resp) { return resp.json(); })
+    .then(function(result) { showURL(result); })
+    .catch(function(error) { console.log(error); });
+}
+function createCard (ev){
+  ev.preventDefault();
+  sendRequest(objectLocalStor);
+  showURL(objectLocalStor);
+}
+
+buttonShare.addEventListener('click', createCard);
