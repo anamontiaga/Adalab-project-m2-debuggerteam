@@ -240,25 +240,42 @@ function saveLocalStorage() {
 }
 
 // Cargar info en el formulario
-function setInputValue() {
-  const savedData = JSON.parse(localStorage.getItem('objectLocalStor'));
-  return savedData;
-  debugger;
-  for (let i = 0; i < inputForm.length; i++) {
-    objectLocalStor[inputForm[i].name] 
+function setInputValue(){
+  return JSON.parse(localStorage.getItem('objectLocalStor'));
 }
-function setRadioValue() {
-  let palletSaved = objectLocalStor.palette;
-
-  for (let i = 0; i < inputFormRadio.childNodes; i++) {
-    if (inputFormRadio[i].id === palletSaved) inputFormRadio[i].checked = true;
+function replacePrefix (){
+  
+}
+function autoFillInput (){
+  const savedData = setInputValue();
+  for (let i=0; i <inputForm.length; i++){
+    let value = savedData[inputForm[i].name];
+    if (inputForm[i].name === phone){
+      savedData.phone = (savedData.phone).replace("+34 ", "");
+    }
+   inputForm[i].value = value;
   }
 }
+function setRadioValue () {
+  const savedData = setInputValue();
+  for (let i=0;i<palletBtn.length;i++){
+    if (i === savedData.palette){
+      palletBtn[i-1].checked = true;
+    }
+  }
 }
 
-function setLocalStorage() {
-  debugger;
-  setInputValue();
-  setRadioValue();
+function chargeImage () {
+  const savedData = setInputValue();
+    avatarImg.src = savedData[photo];
+    profileImg.src = savedData[photo];
 }
-setLocalStorage();
+
+function loadLocalStorage() {
+  debugger;
+  //setInputValue();
+  autoFillInput()
+  setRadioValue();
+  chargeImage();
+}
+loadLocalStorage();
