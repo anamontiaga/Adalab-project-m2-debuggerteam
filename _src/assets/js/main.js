@@ -29,8 +29,6 @@ const visualization = document.querySelector(".visualization");
 // select pallet list buttons
 const palettBoxes = document.querySelectorAll(".color-pallet");
 
-const palletBtn = document.querySelectorAll(".js-palett-btn");
-
 // remove existent classes
 const removeClasses = () => {
   for (let i = 1; i < visualization.classList.length; i++) {
@@ -69,6 +67,7 @@ handlePalettBtnsClick(palettBoxes);
 function checkUserName(string) {
   return string.replace("@", "");
 }
+
 // Email
 const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
@@ -90,6 +89,7 @@ const getPhone = () => {
     '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
 };
 phone.addEventListener("change", getPhone);
+
 //Linkedin
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
@@ -100,9 +100,9 @@ const getLinkedin = () => {
     linkedinOK +
     '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
 };
-
 linkedin.addEventListener("change", getLinkedin);
 
+//GitHub
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
@@ -114,15 +114,11 @@ const getGithub = () => {
 };
 github.addEventListener("change", getGithub);
 
-// form fill on card
-
 // PHOTO --------------------------------
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
 const profileAvatar = document.querySelector(".visualization__user__img");
 
-// const avatarImg = document.createElement("img");
-// const profileImg = document.createElement("img");
 const fr = new FileReader();
 
 const writeImage = () => {
@@ -141,14 +137,11 @@ uploadImage.addEventListener("change", getImage);
 // RESET and CLEAR FORM ---------------------------------
 // cogemos el elemento que vamos a escuchar
 const inputForm = document.querySelectorAll(".data__form-item");
-
 const dataCard = document.querySelectorAll(".js-visualization-data");
-
-inputAddEvent();
-
 const inputText = ["Nombre Apellido", "Front-end developer"];
+const iconsList = [emailPlace, phonePlace, linkedinPlace, githubPlace];
 
-const clearForm = () => {
+const resetPreviewText = () => {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].value = "";
     dataCard[i].innerText = inputText[i];
@@ -157,32 +150,29 @@ const clearForm = () => {
 
 const resetPreviewColors = () => removeClasses();
 
-const iconsList = [emailPlace, phonePlace, linkedinPlace, githubPlace];
-
 const resetPreviewIcons = () => {
   for (const item of iconsList) {
-    item.firstChild.style.opacity = 0.5;
+    item.firstElementChild.style.opacity = 0.5;
   }
 };
 
-const clearPhoto = () => {
+const resetPreviewPhoto = () => {
   profileAvatar.style.backgroundImage =
     'url("./assets/images/blank-profile.png")';
 };
 
 const resetPreview = () => {
   resetPreviewColors();
-  clearForm();
+  resetPreviewText();
   resetPreviewIcons();
-  clearPhoto();
+  resetPreviewPhoto();
 };
 
 const btnReset = document.querySelector(".js-reset");
-
 btnReset.addEventListener("click", resetPreview);
 
 //Send DATA to preview
-function sendDataCard() {
+function setPreviewText() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
       dataCard[i].innerText = inputText[i];
@@ -192,8 +182,23 @@ function sendDataCard() {
   }
 }
 
+const clearIcons = () => {
+  for (let i = 2; i < inputForm.length; i++) {
+    if (inputForm[i].value === "") {
+      iconsList[i - 2].firstElementChild.style.opacity = 0.5;
+    }
+  }
+};
+
+const setPreview = () => {
+  setPreviewText();
+  clearIcons();
+};
+
 function inputAddEvent() {
-  for (let i = 0; i < dataCard.length; i++) {
-    inputForm[i].addEventListener("keyup", sendDataCard);
+  for (let i = 2; i < dataCard.length; i++) {
+    inputForm[i].addEventListener("keyup", setPreview);
   }
 }
+
+inputAddEvent();
