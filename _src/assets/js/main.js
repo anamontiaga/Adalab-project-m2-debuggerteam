@@ -260,14 +260,15 @@ function setLocalStorage() {
 }
 
 function autoFillInput() {
-  debugger;
   const savedData = setLocalStorage();
+  if (savedData){
   for (let i = 0; i < inputForm.length; i++) {
     let value = savedData[inputForm[i].name];
     inputForm[i].value = value;
     if (inputForm[i].name === "phone") {
       const phone = savedData.phone.replace("+34 ", "");
       inputForm[i].value = phone;
+    }
     }
   }
 }
@@ -291,7 +292,6 @@ function chargeImage() {
 }
 
 function loadLocalStorage() {
-  //setInputValue();
   autoFillInput();
   setRadioValue();
   chargeImage();
