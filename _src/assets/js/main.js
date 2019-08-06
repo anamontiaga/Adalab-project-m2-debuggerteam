@@ -201,33 +201,8 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-<<<<<<< HEAD
-// PHOTO --------------------------------
-const uploadImage = document.querySelector("#photo");
-const miniAvatar = document.querySelector(".data__form__image-thumbnail");
-const profileAvatar = document.querySelector(".visualization__user__img");
-
-// const avatarImg = document.createElement("img");
-// const profileImg = document.createElement("img");
-const fr = new FileReader();
-
-const writeImage = () => {
-  miniAvatar.style.backgroundImage = `url('${fr.result}')`;
-  profileAvatar.style.backgroundImage = `url('${fr.result}')`;
-  return (fr.result);
-};
-
-const getImage = () => {
-  debugger;
-  const myImg = uploadImage.files[0];
-  fr.addEventListener("load", writeImage);
-  fr.readAsDataURL(myImg);
-  readImageValue(writeImage());
-};
-=======
 // PHOTO
 
->>>>>>> dev
 uploadImage.addEventListener("change", getImage);
 
 // Use LocalStorage
@@ -283,21 +258,12 @@ function saveLocalStorage() {
   localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
 }
 
-<<<<<<< HEAD
-// Cargar info en el formulario arrancar pagina
-function setLocalStorage(){
-  return JSON.parse(localStorage.getItem('objectLocalStor'));
-}
-
-function autoFillInput (){
-=======
 // Cargar info en el formulario
 function setLocalStorage() {
   return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
 function replacePrefix() {}
 function autoFillInput() {
->>>>>>> dev
   const savedData = setLocalStorage();
   for (let i = 0; i < inputForm.length; i++) {
     let value = savedData[inputForm[i].name];
@@ -319,26 +285,14 @@ function setRadioValue() {
 
 function chargeImage() {
   const savedData = setLocalStorage();
-<<<<<<< HEAD
-  miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
-  profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
-}
-
-function loadLocalStorage() {
-=======
   miniAvatar.style.backgroundImage = savedData[photo];
   profileAvatar.style.backgroundImage = savedData[photo];
 }
 
 function loadLocalStorage() {
   //setInputValue();
->>>>>>> dev
   autoFillInput();
   setRadioValue();
-  getEmail();
-  getPhone();
-  getGithub();
-  getLinkedin();
   chargeImage();
 }
 loadLocalStorage();
