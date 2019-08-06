@@ -265,12 +265,14 @@ function setLocalStorage() {
 function replacePrefix() {}
 function autoFillInput() {
   const savedData = setLocalStorage();
-  for (let i = 0; i < inputForm.length; i++) {
-    let value = savedData[inputForm[i].name];
-    inputForm[i].value = value;
-    if (inputForm[i].name === "phone") {
-      const phone = savedData.phone.replace("+34 ", "");
-      inputForm[i].value = phone;
+  if (savedData !== null) {
+    for (let i = 0; i < inputForm.length; i++) {
+      let value = savedData[inputForm[i].name];
+      inputForm[i].value = value;
+      if (inputForm[i].name === "phone") {
+        const phone = savedData.phone.replace("+34 ", "");
+        inputForm[i].value = phone;
+      }
     }
   }
 }
@@ -335,7 +337,7 @@ function showURL(objectLocalStor) {
   showResultURL.classList.remove("js-hidden");
 }
 function sendRequest(json) {
-  fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
+  fetch("https://us-central1-awesome-cards-c6f0.6f0.coudfunctions.net/card/", {
     method: "POST",
     body: JSON.stringify(json),
     headers: {
