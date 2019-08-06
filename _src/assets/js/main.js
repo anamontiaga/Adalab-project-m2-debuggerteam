@@ -54,6 +54,7 @@ const changePalett = event => {
   addChoosedClass(event);
   checkBtn();
   readRadioForm(event);
+  saveLocalStorage();
 };
 
 // add event in each palett btn
@@ -173,7 +174,7 @@ const fr = new FileReader();
 const writeImage = () => {
   avatarImg.src = fr.result;
   profileImg.src = fr.result;
-  readImageValue(fr.result);
+  return (fr.result);
   /*  return avatarImg.result; */
 };
 const getImage = () => {
@@ -216,18 +217,18 @@ function readInputValue() {
 }
 // Leer valor del input (#id vale?)
 function readRadioForm(ev) {
-
   const palletChoose = ev.currentTarget;
   objectLocalStor.palette = parseInt(palletChoose.dataset.value);
 }
 // Guardar los datos de la imagen
 
 function readImageValue(src) {
-  return  objectLocalStor.photo = src;
+  return objectLocalStor.photo = src;
 }
 // Handle para leer cambios en el form
 function createLocalStorage() {
   readInputValue();
+  readImageValue(writeImage());
   saveLocalStorage();
 }
 const form = document.querySelector(".js-data__input");
@@ -240,24 +241,25 @@ function saveLocalStorage() {
 }
 
 // Cargar info en el formulario
-function setInputValue(){
+function setLocalStorage(){
   return JSON.parse(localStorage.getItem('objectLocalStor'));
 }
 function replacePrefix (){
 
 }
 function autoFillInput (){
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
-    if (inputForm[i].name === phone){
-      savedData.phone = (savedData.phone).replace("+34 ", "");
+    if (savedData[inputForm[i].name] === phone){
+      const phone = (savedData.phone).replace("+34 ", "");
+      inputForm[i].name.value = phone;
     }
     inputForm[i].value = value;
   }
 }
 function setRadioValue () {
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
   for (let i=0;i<palletBtn.length;i++){
     if (i === savedData.palette){
       palletBtn[i-1].checked = true;
@@ -266,7 +268,7 @@ function setRadioValue () {
 }
 
 function chargeImage () {
-  const savedData = setInputValue();
+  const savedData = setLocalStorage();
   avatarImg.src = savedData[photo];
   profileImg.src = savedData[photo];
 }
