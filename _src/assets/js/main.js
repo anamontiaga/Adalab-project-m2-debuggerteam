@@ -248,7 +248,7 @@ function replacePrefix (){
 
 }
 function autoFillInput (){
-  debugger
+
   const savedData = setLocalStorage();
   for (let i=0; i <inputForm.length; i++){
     let value = savedData[inputForm[i].name];
@@ -306,15 +306,21 @@ let buttonShare = document.querySelector(".js-saveLocalStorage");
 // objectLocalStor
 const responseURL= document.querySelector('.js-response');
 const showResultURL= document.querySelector('.share__twitter');
+// Twitter //
+// const btnTwitter = document.querySelector('.js-btn-twitter');
+const twitterURL = document.querySelector('.js-twitter-url');
+const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
+
 
 function showURL(objectLocalStor) {
   if (objectLocalStor.success) {
     responseURL.innerHTML = '<a href=' + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + '</a>';
+    twitterURL.href = tweet + objectLocalStor.cardURL;
   } else {
     responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
   }
-  debugger;
-showResultURL.classList.remove('js-hidden')
+
+  showResultURL.classList.remove('js-hidden');
 }
 function sendRequest(json){
   fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
@@ -335,3 +341,8 @@ function createCard (ev){
 }
 
 buttonShare.addEventListener('click', createCard);
+
+// CREAMOS UNA FUNCIÓN EN createCard que implique añadir clase al botón -para ponerlo en gris- y para deshabilitarlo -con un preventDefault()
+
+
+
