@@ -64,15 +64,9 @@ const handlePalettBtnsClick = function() {
   }
 };
 
-// //add event in each palett box
-// const handlePalettColorBox1 = function () {
-//   for (let i = 0; i < palettColorBox1.length; i++) {
-//     palettColorBox1[i].addEventListener("click", changePalett);
-//   }
-// };
-
 handlePalettBtnsClick(palettBoxes);
-//Icons beta
+
+//Icons beta -------------------------------------------
 // Remove @
 function removeAtSymbol(string) {
   return string.replace("@", "");
@@ -122,10 +116,32 @@ const getGithub = () => {
 };
 github.addEventListener("change", getGithub);
 
-// handlePalettColorBox1(palettColorBox1);
-
 // form fill on card
 
+// PHOTO --------------------------------
+const uploadImage = document.querySelector("#photo");
+const miniAvatar = document.querySelector(".data__form__image-thumbnail");
+const profileAvatar = document.querySelector(".visualization__user__img");
+
+// const avatarImg = document.createElement("img");
+// const profileImg = document.createElement("img");
+const fr = new FileReader();
+
+const writeImage = () => {
+  miniAvatar.style.backgroundImage = `url('${fr.result}')`;
+  profileAvatar.style.backgroundImage = `url('${fr.result}')`;
+  return fr.result;
+};
+
+const getImage = () => {
+  const myImg = uploadImage.files[0];
+  fr.addEventListener("load", writeImage);
+  fr.readAsDataURL(myImg);
+};
+
+uploadImage.addEventListener("change", getImage);
+
+// RESET and CLEAR FORM ---------------------------------
 // cogemos el elemento que vamos a escuchar
 const inputForm = document.querySelectorAll(".data__form-item");
 
@@ -134,6 +150,7 @@ const dataCard = document.querySelectorAll(".js-visualization-data");
 inputAddEvent();
 
 const inputText = ["Nombre Apellido", "Front-end developer"];
+
 const clearForm = () => {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].value = "";
@@ -143,11 +160,32 @@ const clearForm = () => {
   }
 };
 
+const resetPreviewColors = () => removeClasses();
+
+const iconsList = [emailPlace, phonePlace, linkedinPlace, githubPlace];
+
+const resetPreviewIcons = () => {
+  for (const item of iconsList) {
+    item.firstChild.style.opacity = 0.5;
+  }
+};
+
+const clearPhoto = () => {
+  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+};
+
+const resetPreview = () => {
+  resetPreviewColors();
+  clearForm();
+  resetPreviewIcons();
+  clearPhoto();
+};
+
 const btnReset = document.querySelector(".js-reset");
 
-btnReset.addEventListener("click", clearForm);
+btnReset.addEventListener("click", resetPreview);
 
-// Si el formulario está vacío, me pinta el inputText, si el formulario está lleno, me pinta los valores que he escrito.
+//Send DATA to preview
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
@@ -164,27 +202,6 @@ function inputAddEvent() {
   }
 }
 // PHOTO
-const uploadImage = document.querySelector("#photo");
-const miniAvatar = document.querySelector(".data__form__image-thumbnail");
-const profileAvatar = document.querySelector(".visualization__user__img");
-
-const avatarImg = document.createElement("img");
-const profileImg = document.createElement("img");
-const fr = new FileReader();
-
-const writeImage = () => {
-  avatarImg.src = fr.result;
-  profileImg.src = fr.result;
-  return fr.result;
-  /*  return avatarImg.result; */
-};
-const getImage = () => {
-  const myImg = uploadImage.files[0];
-  miniAvatar.appendChild(avatarImg);
-  profileAvatar.appendChild(profileImg);
-  fr.addEventListener("load", writeImage);
-  fr.readAsDataURL(myImg);
-};
 
 uploadImage.addEventListener("change", getImage);
 
@@ -268,8 +285,8 @@ function setRadioValue() {
 
 function chargeImage() {
   const savedData = setLocalStorage();
-  avatarImg.src = savedData[photo];
-  profileImg.src = savedData[photo];
+  miniAvatar.style.backgroundImage = savedData[photo];
+  profileAvatar.style.backgroundImage = savedData[photo];
 }
 
 function loadLocalStorage() {
