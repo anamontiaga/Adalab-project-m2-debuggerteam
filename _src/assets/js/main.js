@@ -181,10 +181,11 @@ const profileAvatar = document.querySelector(".visualization__user__img");
 // const avatarImg = document.createElement("img");
 // const profileImg = document.createElement("img");
 const fr = new FileReader();
-
+const getPhotoSaved = () => {
+  profileAvatar.style.backgroundImage =` url("objectLocalStor.photo")`;
+}
 const clearPhoto = () => {
-  profileAvatar.style.backgroundImage =
-    'url("./assets/images/blank-profile.png")';
+  profileAvatar.style.backgroundImage ='url("./assets/images/blank-profile.png")';
   miniAvatar.style.backgroundImage = 'url("")';
 };
 
@@ -278,7 +279,8 @@ function saveLocalStorage() {
 
 // Cargar info en el formulario
 function setLocalStorage() {
-  return JSON.parse(localStorage.getItem("objectLocalStor"));
+  let object = localStorage.getItem("objectLocalStor");
+  return JSON.parse(object);
 }
 
 function autoFillInput() {
@@ -307,7 +309,7 @@ function setRadioValue() {
 
 function chargeImage() {
   const savedData = setLocalStorage();
-  if (savedData) {
+  if (savedData.photo) {
     miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
     profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
   }
@@ -317,7 +319,6 @@ function loadLocalStorage() {
   autoFillInput();
   setRadioValue();
   chargeImage();
-  writeImage();
   getGithub();
   getEmail();
   getLinkedin();
@@ -380,7 +381,7 @@ function disableShareButton (fetchresult) {
 // Convertir objectlocalstor to json y pasar por sendrequest y showURL
 function createCard(ev) {
   ev.preventDefault();
-  const jsonLocalStor = localStorage.getItem("objectLocalStor");
+const jsonLocalStor = localStorage.getItem("objectLocalStor");
   sendRequest(jsonLocalStor);
 }
 
