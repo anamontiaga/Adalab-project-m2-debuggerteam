@@ -1,18 +1,5 @@
 /* eslint-disable quotes */
 /* eslint-disable strict */
-// collapse ---------------------------------------------
-const mainForm = document.querySelector(".main__form");
-const visualizationForm = document.querySelector(".js-visualizationReset");
-const btnReset = document.querySelector(".js-reset");
-
-const clearForm = ev => {
-  ev.stopBubbling();
-  ev.preventDefault();
-  mainForm.reset();
-  visualizationForm.reset();
-};
-
-btnReset.addEventListener("click", clearForm);
 
 //collapse-------------------------------------------
 // select collpse button
@@ -21,7 +8,13 @@ const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 // event function (toggle class hidden)
 const makeCollapse = event => {
   event.preventDefault();
-  event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
+  if (
+    event.currentTarget &&
+    event.currentTarget.parentElement &&
+    event.currentTarget.parentElement.parentElement
+  ) {
+    event.currentTarget.parentElement.parentElement.classList.toggle("hidden");
+  }
 };
 
 for (let i = 0; i < btnsCollapse.length; i++) {
@@ -218,11 +211,15 @@ uploadImage.addEventListener("change", getImage);
 //Send DATA to preview
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
-    dataCard[i].innerHTML = inputForm[i].value;
+    if (inputForm[i].value === "") {
+      dataCard[i].innerText = inputText[i];
+    } else {
+      dataCard[i].innerHTML = inputForm[i].value;
+    }
   }
 }
 
-function addEvent() {
+function inputAddEvent() {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
