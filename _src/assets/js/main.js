@@ -136,7 +136,7 @@ const profileAvatar = document.querySelector(".visualization__user__img");
 const fr = new FileReader();
 
 const writeImage = () => {
-  if (fr.result) {
+  if (fr.result !== null) {
     miniAvatar.style.backgroundImage = `url('${fr.result}')`;
     profileAvatar.style.backgroundImage = `url('${fr.result}')`;
     readImageValue(fr.result);
@@ -178,7 +178,7 @@ const iconsList = [emailPlace, phonePlace, linkedinPlace, githubPlace];
 
 const resetPreviewIcons = () => {
   for (const item of iconsList) {
-    item.firstChild.style.opacity = 0.5;
+    item.firstElementChild.style.opacity = 0.5;
   }
 };
 
