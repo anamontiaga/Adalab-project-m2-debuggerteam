@@ -111,8 +111,11 @@ body {
   }
 }
 
-// .layout-page__menu__list__one {
-//     display: flex;
-//     flex-direction: column;
-//     text-align: center;
-// }
+.far {
+  color: $colorButton;
+  font-size: 22.4px;
+  padding: 5px;
+  @media all and (min-width: $mediaTablet) {
+    font-size: 28px;
+  }
+  }
