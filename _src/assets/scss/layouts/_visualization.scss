@@ -30,8 +30,10 @@
     width: 75px;
     height: 30px;
     color: $colorWhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     &__icon {
-      display: flex;
       color: $colorWhite;
       font-size: 15px;
       // padding: 5px;
