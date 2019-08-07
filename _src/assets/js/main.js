@@ -201,12 +201,11 @@ function sendDataCard() {
 function inputAddEvent() {
   for (let i = 0; i < dataCard.length; i++) {
     inputForm[i].addEventListener("keyup", sendDataCard);
-    }
   }
 }
+
 // Use LocalStorage
-/* const inputForm = document.querySelectorAll(".data__form-item");
- */
+
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 /* eslint-disable quotes */
 
@@ -309,23 +308,8 @@ loadLocalStorage();
 
 //  API ---------------------------------------
 
-// Función que recoge la información del usuario y llama a
-// la api externa (cards) para que nos genere la tarjeta de visita.
-// let fullName = document.querySelector(".js-form_name");
-// let job = document.querySelector(".js-form__job");
 let buttonShare = document.querySelector(".js-saveLocalStorage");
 
-// function makeURL () {
-//   const userInfo = {
-//     palette: palletBtn.value,
-//     name: fullName.value,
-//     job: job.value,
-//     phone: phone.value,
-//     email: email.value,
-//     linkedin: linkedin.value,
-//     github: github.value,
-//     photo: fr.result,
-//   };
 
 // objectLocalStor
 const responseURL= document.querySelector('.js-response');
@@ -335,37 +319,29 @@ const showResultURL= document.querySelector('.share__twitter');
 const twitterURL = document.querySelector('.js-twitter-url');
 const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
-
 function showURL(objectLocalStor) {
-  if (objectLocalStor.success) {
-    responseURL.innerHTML = "<a href='" + objectLocalStor.cardURL + ">" + objectLocalStor.cardURL + "'</a>";
+  if(objectLocalStor.success){
+    responseURL.innerHTML = "<a href='" + objectLocalStor.cardURL + '>' + objectLocalStor.cardURL + "'</a>'";
     twitterURL.href = tweet + objectLocalStor.cardURL;
   } else {
-    responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
-    }
+    responseURL.innerHTML = 'ERROR:' + objectLocalStor.error;
   }
-
-  showResultURL.classList.remove('js-hidden');
 }
 
-function sendRequest(json) {
-  fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/") {
-    method: "POST",
-    body: JSON.stringify(json),
+function sendRequest(objectLocalStor){
+  debugger;
+  fetch('https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/', {
+    method: 'POST',
+    body: JSON.stringify(objectLocalStor),
     headers: {
-      "content-type": "application/json"
-    })
-    .then(function(resp) {
-      return resp.json();
-    })
-    .then(function(result) {
-      showURL(result);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  }
+      'content-type': 'application/json'
+    },
+  })
+    .then(function(resp) { return resp.json(); })
+    .then(function(result) { showURL(result); })
+    .catch(function(error) { console.log(error); });
 }
+
 function createCard(ev) {
   ev.preventDefault();
   sendRequest(objectLocalStor);
