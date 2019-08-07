@@ -76,10 +76,7 @@ const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
 const getEmail = () => {
   if (email.value) {
-    emailPlace.innerHTML =
-      '<a href="mailto:' +
-      email.value +
-      '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+    emailPlace.innerHTML = '<a href="mailto:' + email.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
   }
 };
 email.addEventListener("change", getEmail);
@@ -88,11 +85,8 @@ email.addEventListener("change", getEmail);
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
 const getPhone = () => {
-  if (phone.value) {
-    phonePlace.innerHTML =
-      '<a href="tel:+34' +
-      phone.value +
-      '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  if (phone.value) { phonePlace.innerHTML =
+      '<a href="tel:+34' + phone.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
   }
 };
 phone.addEventListener("change", getPhone);
@@ -102,10 +96,7 @@ const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
   const linkedinOK = removeAtSymbol(linkedin.value);
   if (linkedinOK) {
-    linkedinPlace.innerHTML =
-      '<a href="https://www.linkedin.com/in/' +
-      linkedinOK +
-      '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+    linkedinPlace.innerHTML = '<a href="https://www.linkedin.com/in/' + linkedinOK + '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
   }
 };
 
@@ -116,10 +107,7 @@ const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
   const githubOK = removeAtSymbol(github.value);
   if (githubOK) {
-    githubPlace.innerHTML =
-      '<a href="https://github.com/' +
-      githubOK +
-      '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+    githubPlace.innerHTML = '<a href="https://github.com/' + githubOK + '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
   }
 };
 github.addEventListener("change", getGithub);
@@ -310,10 +298,12 @@ function loadLocalStorage() {
   autoFillInput();
   setRadioValue();
   chargeImage();
+  writeImage();
   getGithub();
   getEmail();
   getLinkedin();
   getPhone();
+  sendDataCard();
 }
 loadLocalStorage();
 
@@ -322,30 +312,26 @@ loadLocalStorage();
 let buttonShare = document.querySelector(".js-saveLocalStorage");
 
 
-// objectLocalStor
-const responseURL= document.querySelector('.js-response');
-const showResultURL= document.querySelector('.share__twitter');
+// objectLocalSto
+const responseURL = document.querySelector(".js-response");
+const showResultURL = document.querySelector(".share__twitter");
 // Twitter //
-// const btnTwitter = document.querySelector('.js-btn-twitter');
 const twitterURL = document.querySelector('.js-twitter-url');
 const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
-function showURL(objectLocalStor) {
-  showResultURL.classList.remove("js-hidden");
-  if (objectLocalStor.success) {
-    responseURL.innerHTML =
-      "<a href=" +
-      objectLocalStor.cardURL +
-      ">" +
-      objectLocalStor.cardURL +
-      "</a>";
-  } else if (objectLocalStor.error) {
-    responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
+function showURL(fetchresult) {
+  if (fetchresult.success) {
+    responseURL.innerHTML = "<a href=" + fetchresult.cardURL + " target = 'blank'>" + fetchresult.cardURL + "</a>";
+    twitterURL.href = tweet + fetchresult.cardURL;
+  } else if (fetchresult.error) {
+    responseURL.innerHTML = "ERROR:" + fetchresult.error;
   }
+  showResultURL.classList.remove('js-hidden');
 }
 
 function sendRequest(json) {
-  fetch("https://us-central1-awesome-cards-c6f0.6f0.coudfunctions.net/card/", {
+  debugger;
+  fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card", {
     method: "POST",
     body: JSON.stringify(json),
     headers: {
@@ -356,11 +342,11 @@ function sendRequest(json) {
     .then(function(result) { showURL(result); })
     .catch(function(error) { console.log(error); });
 }
-
+// Convertir objectlocalstor to json y pasar por sendrequest y showURL
+const jsonLocalStor = localStorage.getItem('objectLocalStor')
 function createCard(ev) {
   ev.preventDefault();
-  sendRequest(objectLocalStor);
-  showURL(objectLocalStor);
+  sendRequest(jsonLocalStor);
 }
 
 buttonShare.addEventListener("click", createCard);
