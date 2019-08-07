@@ -76,10 +76,7 @@ const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
 const getEmail = () => {
   if (email.value) {
-    emailPlace.innerHTML =
-      '<a href="mailto:' +
-      email.value +
-      '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+    emailPlace.innerHTML = '<a href="mailto:' + email.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
   }
 };
 email.addEventListener("change", getEmail);
@@ -88,11 +85,8 @@ email.addEventListener("change", getEmail);
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
 const getPhone = () => {
-  if (phone.value) {
-    phonePlace.innerHTML =
-      '<a href="tel:+34' +
-      phone.value +
-      '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  if (phone.value) { phonePlace.innerHTML =
+      '<a href="tel:+34' + phone.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
   }
 };
 phone.addEventListener("change", getPhone);
@@ -102,10 +96,7 @@ const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
   const linkedinOK = removeAtSymbol(linkedin.value);
   if (linkedinOK) {
-    linkedinPlace.innerHTML =
-      '<a href="https://www.linkedin.com/in/' +
-      linkedinOK +
-      '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+    linkedinPlace.innerHTML = '<a href="https://www.linkedin.com/in/' + linkedinOK + '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
   }
 };
 
@@ -116,10 +107,7 @@ const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
   const githubOK = removeAtSymbol(github.value);
   if (githubOK) {
-    githubPlace.innerHTML =
-      '<a href="https://github.com/' +
-      githubOK +
-      '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+    githubPlace.innerHTML = '<a href="https://github.com/' + githubOK + '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
   }
 };
 github.addEventListener("change", getGithub);
@@ -217,8 +205,7 @@ function inputAddEvent() {
 }
 
 // Use LocalStorage
-/* const inputForm = document.querySelectorAll(".data__form-item");
- */
+
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 /* eslint-disable quotes */
 
@@ -274,7 +261,8 @@ function setLocalStorage() {
   return JSON.parse(localStorage.getItem("objectLocalStor"));
 }
 
-function autoFillInput() {
+function autoFillInput (){
+
   const savedData = setLocalStorage();
   if (savedData) {
     for (let i = 0; i < inputForm.length; i++) {
@@ -310,73 +298,55 @@ function loadLocalStorage() {
   autoFillInput();
   setRadioValue();
   chargeImage();
+  writeImage();
   getGithub();
   getEmail();
   getLinkedin();
   getPhone();
+  sendDataCard();
 }
 loadLocalStorage();
 
 //  API ---------------------------------------
 
-// Función que recoge la información del usuario y llama a
-// la api externa (cards) para que nos genere la tarjeta de visita.
-// let fullName = document.querySelector(".js-form_name");
-// let job = document.querySelector(".js-form__job");
 let buttonShare = document.querySelector(".js-saveLocalStorage");
 
-// function makeURL () {
-//   const userInfo = {
-//     palette: palletBtn.value,
-//     name: fullName.value,
-//     job: job.value,
-//     phone: phone.value,
-//     email: email.value,
-//     linkedin: linkedin.value,
-//     github: github.value,
-//     photo: fr.result,
-//   };
 
-// objectLocalStor
+// objectLocalSto
 const responseURL = document.querySelector(".js-response");
 const showResultURL = document.querySelector(".share__twitter");
+// Twitter //
+const twitterURL = document.querySelector('.sharetwitter');
+const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
-function showURL(objectLocalStor) {
-  if (objectLocalStor.success) {
-    responseURL.innerHTML =
-      "<a href=" +
-      objectLocalStor.cardURL +
-      ">" +
-      objectLocalStor.cardURL +
-      "</a>";
-  } else if (objectLocalStor.error) {
-    responseURL.innerHTML = "ERROR:" + objectLocalStor.error;
+function showURL(fetchresult) {
+showResultURL.classList.remove('js-hidden');
+  if (fetchresult.success) {
+    responseURL.innerHTML = "<a href=" + fetchresult.cardURL + " target = 'blank'>" + fetchresult.cardURL + "</a>";
+    twitterURL.href = tweet + fetchresult.cardURL ;
+  } else {
+    responseURL.innerHTML = "ERROR:" + fetchresult.error;
   }
 }
 
-function sendRequest(json) {
-  fetch("https://us-central1-awesome-cards-c6f0.6f0.coudfunctions.net/card/", {
-    method: "POST",
-    body: JSON.stringify(json),
-    headers: {
-      "content-type": "application/json"
-    }
-  })
-    .then(function(resp) {
-      return resp.json();
-    })
-    .then(function(result) {
-      showURL(result);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-}
 
+function sendRequest(json) {
+  debugger;
+  fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
+    method: "POST",
+    headers: {'content-type': 'application/json'
+    },
+    body: json,
+  })
+    .then(function(resp) { return resp.json(); })
+    .then(function(result) { showURL(result); })
+    .catch(function(error) { console.log(error); });
+}
+// Convertir objectlocalstor to json y pasar por sendrequest y showURL
+const jsonLocalStor = localStorage.getItem('objectLocalStor')
 function createCard(ev) {
   ev.preventDefault();
-  sendRequest(objectLocalStor);
-  showURL(objectLocalStor);
+  sendRequest(jsonLocalStor);
 }
 
 buttonShare.addEventListener("click", createCard);
