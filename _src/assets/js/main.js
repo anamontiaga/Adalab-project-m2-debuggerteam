@@ -320,14 +320,14 @@ const twitterURL = document.querySelector('.js-twitter-url');
 const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
 function showURL(fetchresult) {
+showResultURL.classList.remove('js-hidden');
   if (fetchresult.success) {
     responseURL.innerHTML = "<a href=" + fetchresult.cardURL + " target = 'blank'>" + fetchresult.cardURL + "</a>";
     twitterURL.href = tweet + fetchresult.cardURL;
-  } else if (fetchresult.error) {
+  } 
     responseURL.innerHTML = "ERROR:" + fetchresult.error;
-  }
-  showResultURL.classList.remove('js-hidden');
 }
+
 
 function sendRequest(json) {
   debugger;
