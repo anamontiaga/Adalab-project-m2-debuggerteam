@@ -7,6 +7,8 @@
         />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Awesome Profile Cards</title>
+        <link rel="shortcut icon" href="../../assets/images/favicon.png"
+        type="image/x-icon">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
         rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Merriweather:900&display=swap"
@@ -39,8 +41,8 @@ Reset</button>
                             class="visualization__user">
                                 <div class="text__wrap text--border">
                                      <h3 class="visualization__user__name name--color js-visualization-data">
-            Nombre Apellido
-          </h3>
+              Nombre Apellido
+            </h3>
 
                                     <p class="visualization__user__job js-visualization-data">Front-end developer</p>
                                 </div>
@@ -62,7 +64,7 @@ Reset</button>
                         </div>
         </div>
         </section>
-        <form>
+        <section class="js-data__input responsive">
             <section class="design  js-collapse">
                 <div class="design__title">
                      <h2 class="design__title__text home--title">
@@ -76,7 +78,7 @@ Reset</button>
                 <div class="design__colors collapse">
                     <p class="design__colors__text home--subtitle">Colores</p>
                     <div class="design__colors__choose js-palett-choose">
-                        <div class="color-pallet blue" id="blue">
+                        <div class="color-pallet blue" id="blue" data-value=" 1">
                             <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
@@ -84,7 +86,7 @@ Reset</button>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
-                        <div class="color-pallet red" id="red">
+                        <div class="color-pallet red" id="red" data-value=" 2">
                             <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
@@ -92,7 +94,7 @@ Reset</button>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
-                        <div class="color-pallet yell" id="yell">
+                        <div class="color-pallet yell" id="yellow" data-value=" 3">
                             <input type="radio" name="radio" class="color-btn js-palett-btn" />
                             <div class="color-pallet__colors ">
                                 <div class="color-pallet__colors__box box-1"></div>
@@ -100,15 +102,29 @@ Reset</button>
                                 <div class="color-pallet__colors__box box-3"></div>
                             </div>
                         </div>
-                        <partial src="_palett-colors.html" colorClass="gre" id="gre"></partial>
-                        <partial src="_palett-colors.html" colorClass="pur" id="pur"></partial>
+                        <div class="color-pallet gre" id="gre" data-value=" 4">
+                            <input type="radio" name="radio" class="color-btn js-palett-btn" />
+                            <div class="color-pallet__colors ">
+                                <div class="color-pallet__colors__box box-1"></div>
+                                <div class="color-pallet__colors__box box-2"></div>
+                                <div class="color-pallet__colors__box box-3"></div>
+                            </div>
+                        </div>
+                        <div class="color-pallet pur" id="pur" data-value=" 5">
+                            <input type="radio" name="radio" class="color-btn js-palett-btn" />
+                            <div class="color-pallet__colors ">
+                                <div class="color-pallet__colors__box box-1"></div>
+                                <div class="color-pallet__colors__box box-2"></div>
+                                <div class="color-pallet__colors__box box-3"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
             <section class="data js-collapse">
                 <div class="data__title">
                      <h2 class="data__title__text home--title">
-      <i class="far fa-keyboard data__title__text__icon"></i>Rellena
+      <i class="data__title__text__icon far fa-keyboard"></i>Rellena
       <!--cambiar por icon-->
     </h2>
 
@@ -119,21 +135,23 @@ Reset</button>
                 <div class="data__form--wrapper collapse">
                     <div action="" class="data__form" method="POST">
                         <label for="name" class="data__form-label">Nombre completo</label>
-                        <input type="text" name="name" class="data__form-item"
+                        <input type="text" name="name" class="data__form-item js-form_name"
                         placeholder="Ej: Sally Jill" />
                         <label for="job" class="data__form-label">Puesto</label>
-                        <input type="text" name="job" class="data__form-item" placeholder="Ej: Front-end unicorn"
-                        />
+                        <input type="text" name="job" class="data__form-item js-form__job"
+                        placeholder="Ej: Front-end unicorn" />
                         <label for="user_image" class="data__form__image-label">Imagen de perfil</label>
                         <div class="data__form__image">
-                            <button type="button" class="data__form__image-button">Añadir imagen</button>
+                            <label for="photo" class="data__form__image-button">Añadir imagen
+                                <input type="file" id="photo" />
+                            </label>
                             <div class="data__form__image-thumbnail"></div>
                         </div>
                         <label for="email" class="data__form-label">Email</label>
                         <input type="email" name="email" class="data__form-item js-link_email"
                         placeholder="Ej: adalab@gmail.com" />
                         <label for="job" class="data__form-label">Teléfono</label>
-                        <input type="tel" name="job" class="data__form-item js-link_phone"
+                        <input type="tel" name="phone" class="data__form-item js-link_phone"
                         placeholder="Ej: 632-54-12-36" />
                         <label for="linkedin" class="data__form-label">LinkedIn</label>
                         <input type="text" name="linkedin" class="data__form-item js-link_linkedin"
@@ -149,8 +167,7 @@ Reset</button>
             <section class="share js-collapse">
                 <div class="share__title">
                      <h2 class="share__title__text home--title">
-      <i class="share__title__icon fas fa-share-alt"></i>
-      Comparte
+      <i class="share__title__icon fas fa-share-alt"></i>Comparte
     </h2>
 
                     <button class="share__title__btn js-btn-collapse"> <i class="fa fa-chevron-up"></i>
@@ -158,34 +175,36 @@ Reset</button>
                     </button>
                 </div>
                 <div class="share__createcard__btn collapse">
-                    <button class="share__createcard__btn__title">Crear Tarjeta <i class="share__createcard__btn__icon fas fa-address-card"></i>
+                    <button class="share__createcard__btn__title js-saveLocalStorage">Crear Tarjeta <i class="share__createcard__btn__icon fas fa-address-card"></i>
 
                     </button>
                 </div>
-                <div class="share__twitter ">
+                <div class="share__twitter js-hidden">
                      <h3 class="share__twitter__title">La tarjeta ha sido creada:</h3>
- <small class="share__twitter__link">https://awesome-profile-card.com?id=A456DF0001</small
+ <small class="share__twitter__link js-response">https://awesome-profile-card.com?id=A456DF0001</small
     >
-    <button class="share__twitter__btn">
+    <a href="" class= "sharetwitter"><button class="share__twitter__btn">
       Compartir en twitter
-      <i class="share__twitter__icon fab fa-twitter"></i>
+      <i class="share__twitter__icon fab fa-twitter"></i></a>
     </button>
   </div>
 </section>
 
-  </form>
+  </section>
 </main>
 
       <footer class="footer">
-    <p class="footer_copy">Awesome profile-cards @2018</p> <a href="index.html#index_page" class="footer_anchor">
-    <img
-      src="./assets/images/logo-adalab-80px.png"
-      alt="Logo de Adalab. Volver al home."
-      class="footer_logo"
-  /></a>
+    <div class="footer_container">
+        <p>Copyright 2018 Awesome profile-cards | by</p>
+        <img class="footer_container_logo"
+        src="./assets/images/logo-debugger.png" alt="logo del equipo Debugger">
+    </div>
+    <div> <a href="index.html#index_page" class="footer_anchor"> <img src="./assets/images/logo-adalab-80px.png" alt="Logo de Adalab. Volver al home." class="footer_logo"></a>
 
+    </div>
 </footer>
     </div>
     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/main2.js"></script>
   </body>
 </html>

@@ -75,10 +75,12 @@ function removeAtSymbol(string) {
 const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
 const getEmail = () => {
-  emailPlace.innerHTML =
-    '<a href="mailto:' +
-    email.value +
-    '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+  if (email.value) {
+    emailPlace.innerHTML =
+      '<a href="mailto:' +
+      email.value +
+      '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+  }
 };
 email.addEventListener("change", getEmail);
 
@@ -86,10 +88,12 @@ email.addEventListener("change", getEmail);
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
 const getPhone = () => {
-  phonePlace.innerHTML =
-    '<a href="tel:+34' +
-    phone.value +
-    '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  if (phone.value) {
+    phonePlace.innerHTML =
+      '<a href="tel:+34' +
+      phone.value +
+      '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  }
 };
 phone.addEventListener("change", getPhone);
 //Linkedin
@@ -97,10 +101,12 @@ const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
   const linkedinOK = removeAtSymbol(linkedin.value);
-  linkedinPlace.innerHTML =
-    '<a href="https://www.linkedin.com/in/' +
-    linkedinOK +
-    '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+  if (linkedinOK) {
+    linkedinPlace.innerHTML =
+      '<a href="https://www.linkedin.com/in/' +
+      linkedinOK +
+      '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+  }
 };
 
 linkedin.addEventListener("change", getLinkedin);
@@ -109,10 +115,12 @@ const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
   const githubOK = removeAtSymbol(github.value);
-  githubPlace.innerHTML =
-    '<a href="https://github.com/' +
-    githubOK +
-    '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+  if (githubOK) {
+    githubPlace.innerHTML =
+      '<a href="https://github.com/' +
+      githubOK +
+      '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+  }
 };
 github.addEventListener("change", getGithub);
 
@@ -128,10 +136,12 @@ const profileAvatar = document.querySelector(".visualization__user__img");
 const fr = new FileReader();
 
 const writeImage = () => {
-  miniAvatar.style.backgroundImage = `url('${fr.result}')`;
-  profileAvatar.style.backgroundImage = `url('${fr.result}')`;
-  readImageValue(fr.result);
-  saveLocalStorage();
+  if (fr.result) {
+    miniAvatar.style.backgroundImage = `url('${fr.result}')`;
+    profileAvatar.style.backgroundImage = `url('${fr.result}')`;
+    readImageValue(fr.result);
+    saveLocalStorage();
+  }
   return fr.result;
 };
 
@@ -173,8 +183,9 @@ const resetPreviewIcons = () => {
 };
 
 const clearPhoto = () => {
-  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
-  profileAvatar.style.backgroundImage = 'url("../images/blank-profile.png")';
+  profileAvatar.style.backgroundImage =
+    'url("./assets/images/blank-profile.png")';
+  miniAvatar.style.backgroundImage = 'url("")';
 };
 
 const resetPreview = () => {
@@ -361,6 +372,7 @@ function sendRequest(json) {
       console.log(error);
     });
 }
+
 function createCard(ev) {
   ev.preventDefault();
   sendRequest(objectLocalStor);
