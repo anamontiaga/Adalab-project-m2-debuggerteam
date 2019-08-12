@@ -329,6 +329,7 @@ showResultURL.classList.remove('js-hidden');
   }
 }
 
+const jsonLocalStor = localStorage.getItem('objectLocalStor');
 
 function sendRequest(json) {
   debugger;
@@ -343,7 +344,6 @@ function sendRequest(json) {
     .catch(function(error) { console.log(error); });
 }
 // Convertir objectlocalstor to json y pasar por sendrequest y showURL
-const jsonLocalStor = localStorage.getItem('objectLocalStor')
 function createCard(ev) {
   ev.preventDefault();
   sendRequest(jsonLocalStor);
