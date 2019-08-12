@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 
 const visualization = document.querySelector(".visualization");
