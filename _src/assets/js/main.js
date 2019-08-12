@@ -1,11 +1,6 @@
-/* eslint-disable quotes */
-/* eslint-disable strict */
 
-//collapse-------------------------------------------
-// select collpse button
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
-// event function (toggle class hidden)
 const makeCollapse = event => {
   event.preventDefault();
   if (
@@ -21,24 +16,19 @@ for (let i = 0; i < btnsCollapse.length; i++) {
   btnsCollapse[i].addEventListener("click", makeCollapse);
 }
 
-// change color -----------------------------------------
-
-// select visualization section
 const visualization = document.querySelector(".visualization");
 
-// select pallet list buttons
 const palettBoxes = document.querySelectorAll(".color-pallet");
 
 const palletBtn = document.querySelectorAll(".js-palett-btn");
 
-// remove existent classes
 const removeClasses = () => {
   for (let i = 1; i < visualization.classList.length; i++) {
     visualization.classList.remove(visualization.classList[i]);
   }
 };
 
-// add choosed class
+
 const addChoosedClass = event => {
   let selectedPalett = event.currentTarget.id;
   visualization.classList.add(selectedPalett);
@@ -48,7 +38,7 @@ const checkBtn = () => {
   event.currentTarget.firstElementChild.checked = true;
 };
 
-// event function
+
 const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
@@ -57,7 +47,7 @@ const changePalett = event => {
   saveLocalStorage();
 };
 
-// add event in each palett btn
+
 const handlePalettBtnsClick = function() {
   for (let i = 0; i < palettBoxes.length; i++) {
     palettBoxes[i].addEventListener("click", changePalett);
@@ -66,12 +56,11 @@ const handlePalettBtnsClick = function() {
 
 handlePalettBtnsClick(palettBoxes);
 
-// RESET and CLEAR FORM //Icons beta
-// Remove @
+
 function removeAtSymbol(string) {
   return string.replace("@", "");
 }
-// Email
+
 const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
 const getEmail = () => {
@@ -86,7 +75,7 @@ const getEmail = () => {
 };
 email.addEventListener("keyup", getEmail);
 
-//Phone
+
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
 const getPhone = () => {
@@ -100,7 +89,8 @@ const getPhone = () => {
   }
 };
 phone.addEventListener("keyup", getPhone);
-//Linkedin
+
+
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
@@ -132,7 +122,7 @@ const getGithub = () => {
 };
 github.addEventListener("keyup", getGithub);
 
-// cogemos el elemento que vamos a escuchar
+
 const inputForm = document.querySelectorAll(".data__form-item");
 
 const dataCard = document.querySelectorAll(".js-visualization-data");
@@ -171,15 +161,13 @@ const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", resetPreview);
 
-// form fill on card
 
 // PHOTO --------------------------------
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
 const profileAvatar = document.querySelector(".visualization__user__img");
 
-// const avatarImg = document.createElement("img");
-// const profileImg = document.createElement("img");
+
 const fr = new FileReader();
 const getPhotoSaved = () => {
   profileAvatar.style.backgroundImage =` url("objectLocalStor.photo")`;
@@ -208,7 +196,6 @@ const getImage = () => {
 
 uploadImage.addEventListener("change", getImage);
 
-//Send DATA to preview
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
@@ -225,10 +212,8 @@ function inputAddEvent() {
   }
 }
 
-// Use LocalStorage
 
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
-/* eslint-disable quotes */
 
 let objectLocalStor = {
   palette: 1,
@@ -240,8 +225,8 @@ let objectLocalStor = {
   github: "",
   photo: ""
 };
-/* eslint-disable strict */
-// Leer valores de texto
+
+
 function readInputValue() {
   for (let i = 0; i < inputForm.length; i++) {
     objectLocalStor[inputForm[i].name] = inputForm[i].value;
@@ -252,17 +237,16 @@ function readInputValue() {
     }
   }
 }
-// Leer valor del input (#id vale?)
+
+
 function readRadioForm(ev) {
   const palletChoose = ev.currentTarget;
   objectLocalStor.palette = parseInt(palletChoose.dataset.value);
 }
-// Guardar los datos de la imagen
 
 function readImageValue(src) {
   return (objectLocalStor.photo = src);
 }
-// Handle para leer cambios en el form
 function createLocalStorage() {
   readInputValue();
   readImageValue(writeImage());
@@ -271,13 +255,11 @@ function createLocalStorage() {
 const form = document.querySelector(".js-data__input");
 form.addEventListener("change", createLocalStorage);
 
-// Save Local Storage
 function saveLocalStorage() {
   localStorage.removeItem("objectLocalStor");
   localStorage.setItem("objectLocalStor", JSON.stringify(objectLocalStor));
 }
 
-// Cargar info en el formulario
 function setLocalStorage() {
   let object = localStorage.getItem("objectLocalStor");
   return JSON.parse(object);
@@ -327,17 +309,13 @@ function loadLocalStorage() {
 }
 loadLocalStorage();
 
-//  API ---------------------------------------
 
 let buttonShare = document.querySelector(".js-saveLocalStorage");
 
-// objectLocalSto
 const responseURL = document.querySelector(".js-response");
 const showResultURL = document.querySelector(".share__twitter");
-// Twitter //
 const twitterURL = document.querySelector(".sharetwitter");
-const tweet =
-  "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
+const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
 function showURL(fetchresult) {
   showResultURL.classList.remove("js-hidden");
@@ -353,6 +331,8 @@ function showURL(fetchresult) {
     responseURL.innerHTML = "ERROR:" + fetchresult.error;
   }
 }
+
+const jsonLocalStor = localStorage.getItem('objectLocalStor');
 
 function sendRequest(json) {
   fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
@@ -381,7 +361,6 @@ function disableShareButton (fetchresult) {
 // Convertir objectlocalstor to json y pasar por sendrequest y showURL
 function createCard(ev) {
   ev.preventDefault();
-const jsonLocalStor = localStorage.getItem("objectLocalStor");
   sendRequest(jsonLocalStor);
 }
 
