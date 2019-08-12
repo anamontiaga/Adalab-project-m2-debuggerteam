@@ -6,9 +6,11 @@ const profileAvatar = document.querySelector(".visualization__user__img");
 
 
 const fr = new FileReader();
+
 const getPhotoSaved = () => {
   profileAvatar.style.backgroundImage =` url("objectLocalStor.photo")`;
 };
+
 const clearPhoto = () => {
   profileAvatar.style.backgroundImage ='url("./assets/images/blank-profile.png")';
   miniAvatar.style.backgroundImage = 'url("")';
