@@ -130,6 +130,8 @@ const clearForm = () => {
 };
 
 
+/* eslint-disable strict */
+
 const visualization = document.querySelector(".visualization");
 
 const palettBoxes = document.querySelectorAll(".color-pallet");
@@ -160,7 +162,6 @@ const changePalett = event => {
   readRadioForm(event);
   saveLocalStorage();
 };
-
 
 const handlePalettBtnsClick = function() {
   for (let i = 0; i < palettBoxes.length; i++) {
