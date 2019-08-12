@@ -44,6 +44,11 @@
       text-transform: uppercase;
       padding: 13px 18px 13px 51px;
       margin-bottom: 30px;
+
+      &:disabled {
+        background-color: grey;
+        cursor: not-allowed;
+      }
     }
     &__icon {
       color: white;
@@ -73,13 +78,15 @@
       width: 181px;
       border-radius: 3px;
       background-color: $coloeButtonTwitter;
-      color: $colorWhite;
       font-family: $font-familyText;
       font-size: 14px;
       line-height: 1.43;
       padding: 3px 9px 7px 38px;
-      position: relative;
-      left: 50px;
+      margin: auto;
+      .sharetwitter {
+        text-decoration: none;
+        color: $colorWhite;
+      }
     }
     &__icon {
       width: 18px;
@@ -95,6 +102,7 @@
       font-size: 12px;
       min-width: 292px;
       margin-bottom: 10px;
+      text-decoration: none;
     }
   }
 }

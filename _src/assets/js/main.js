@@ -66,7 +66,7 @@ const handlePalettBtnsClick = function() {
 
 handlePalettBtnsClick(palettBoxes);
 
-//Icons beta -------------------------------------------
+// RESET and CLEAR FORM //Icons beta
 // Remove @
 function removeAtSymbol(string) {
   return string.replace("@", "");
@@ -76,72 +76,62 @@ const email = document.querySelector(".js-link_email");
 const emailPlace = document.querySelector(".js-email");
 const getEmail = () => {
   if (email.value) {
-    emailPlace.innerHTML = '<a href="mailto:' + email.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+    emailPlace.innerHTML =
+      '<a href="mailto:' +
+      email.value +
+      '" target="_blank"><i style="opacity:1" class="icon fa fa-envelope js-envelope"></i></a>';
+  } else {
+    emailPlace.firstElementChild.style.opacity = 0.5;
   }
 };
-email.addEventListener("change", getEmail);
+email.addEventListener("keyup", getEmail);
 
 //Phone
 const phone = document.querySelector(".js-link_phone");
 const phonePlace = document.querySelector(".js-phone");
 const getPhone = () => {
-  if (phone.value) { phonePlace.innerHTML =
-      '<a href="tel:+34' + phone.value + '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  if (phone.value) {
+    phonePlace.innerHTML =
+      '<a href="tel:+34' +
+      phone.value +
+      '" target="_blank"><i style="opacity:1" class="icon fa fa-mobile-alt js-envelope"></i></a>';
+  } else {
+    phonePlace.firstElementChild.style.opacity = 0.5;
   }
 };
-phone.addEventListener("change", getPhone);
+phone.addEventListener("keyup", getPhone);
 //Linkedin
 const linkedin = document.querySelector(".js-link_linkedin");
 const linkedinPlace = document.querySelector(".js-linkedin");
 const getLinkedin = () => {
   const linkedinOK = removeAtSymbol(linkedin.value);
   if (linkedinOK) {
-    linkedinPlace.innerHTML = '<a href="https://www.linkedin.com/in/' + linkedinOK + '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+    linkedinPlace.innerHTML =
+      '<a href="https://www.linkedin.com/in/' +
+      linkedinOK +
+      '/" target="_blank"><i style="opacity:1" class="icon fab fa-linkedin-in"></i></a>';
+  } else {
+    linkedinPlace.firstElementChild.style.opacity = 0.5;
   }
 };
 
-linkedin.addEventListener("change", getLinkedin);
+linkedin.addEventListener("keyup", getLinkedin);
 
 const github = document.querySelector(".js-link_github");
 const githubPlace = document.querySelector(".js-github");
 const getGithub = () => {
   const githubOK = removeAtSymbol(github.value);
   if (githubOK) {
-    githubPlace.innerHTML = '<a href="https://github.com/' + githubOK + '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+    githubPlace.innerHTML =
+      '<a href="https://github.com/' +
+      githubOK +
+      '" target="_blank"><i style="opacity:1" class="icon fab fa-github-alt"></i></a>';
+  } else {
+    githubPlace.firstElementChild.style.opacity = 0.5;
   }
 };
-github.addEventListener("change", getGithub);
+github.addEventListener("keyup", getGithub);
 
-// form fill on card
-
-// PHOTO --------------------------------
-const uploadImage = document.querySelector("#photo");
-const miniAvatar = document.querySelector(".data__form__image-thumbnail");
-const profileAvatar = document.querySelector(".visualization__user__img");
-
-// const avatarImg = document.createElement("img");
-// const profileImg = document.createElement("img");
-const fr = new FileReader();
-
-const writeImage = () => {
-  if (fr.result !== null) {
-    miniAvatar.style.backgroundImage = `url('${fr.result}')`;
-    profileAvatar.style.backgroundImage = `url('${fr.result}')`;
-    readImageValue(fr.result);
-    saveLocalStorage();
-  }
-  return fr.result;
-};
-
-const getImage = () => {
-  const myImg = uploadImage.files[0];
-  fr.addEventListener("load", writeImage);
-  fr.readAsDataURL(myImg);
-};
-
-uploadImage.addEventListener("change", getImage);
-
-// RESET and CLEAR FORM ---------------------------------
 // cogemos el elemento que vamos a escuchar
 const inputForm = document.querySelectorAll(".data__form-item");
 
@@ -170,12 +160,6 @@ const resetPreviewIcons = () => {
   }
 };
 
-const clearPhoto = () => {
-  profileAvatar.style.backgroundImage =
-    'url("./assets/images/blank-profile.png")';
-  miniAvatar.style.backgroundImage = 'url("")';
-};
-
 const resetPreview = () => {
   resetPreviewColors();
   clearForm();
@@ -186,6 +170,43 @@ const resetPreview = () => {
 const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", resetPreview);
+
+// form fill on card
+
+// PHOTO --------------------------------
+const uploadImage = document.querySelector("#photo");
+const miniAvatar = document.querySelector(".data__form__image-thumbnail");
+const profileAvatar = document.querySelector(".visualization__user__img");
+
+// const avatarImg = document.createElement("img");
+// const profileImg = document.createElement("img");
+const fr = new FileReader();
+const getPhotoSaved = () => {
+  profileAvatar.style.backgroundImage =` url("objectLocalStor.photo")`;
+}
+const clearPhoto = () => {
+  profileAvatar.style.backgroundImage ='url("./assets/images/blank-profile.png")';
+  miniAvatar.style.backgroundImage = 'url("")';
+};
+
+const writeImage = () => {
+  if (fr.result !== null) {
+    miniAvatar.style.backgroundImage = `url('${fr.result}')`;
+    profileAvatar.style.backgroundImage = `url('${fr.result}')`;
+    readImageValue(fr.result);
+    saveLocalStorage();
+  } else {
+    clearPhoto();
+  }
+};
+
+const getImage = () => {
+  const myImg = uploadImage.files[0];
+  fr.addEventListener("load", writeImage);
+  fr.readAsDataURL(myImg);
+};
+
+uploadImage.addEventListener("change", getImage);
 
 //Send DATA to preview
 function sendDataCard() {
@@ -258,11 +279,11 @@ function saveLocalStorage() {
 
 // Cargar info en el formulario
 function setLocalStorage() {
-  return JSON.parse(localStorage.getItem("objectLocalStor"));
+  let object = localStorage.getItem("objectLocalStor");
+  return JSON.parse(object);
 }
 
-function autoFillInput (){
-
+function autoFillInput() {
   const savedData = setLocalStorage();
   if (savedData) {
     for (let i = 0; i < inputForm.length; i++) {
@@ -288,7 +309,7 @@ function setRadioValue() {
 
 function chargeImage() {
   const savedData = setLocalStorage();
-  if (savedData) {
+  if (savedData.photo) {
     miniAvatar.style.backgroundImage = `url('${savedData.photo}')`;
     profileAvatar.style.backgroundImage = `url('${savedData.photo}')`;
   }
@@ -298,7 +319,6 @@ function loadLocalStorage() {
   autoFillInput();
   setRadioValue();
   chargeImage();
-  writeImage();
   getGithub();
   getEmail();
   getLinkedin();
@@ -311,19 +331,24 @@ loadLocalStorage();
 
 let buttonShare = document.querySelector(".js-saveLocalStorage");
 
-
 // objectLocalSto
 const responseURL = document.querySelector(".js-response");
 const showResultURL = document.querySelector(".share__twitter");
 // Twitter //
-const twitterURL = document.querySelector('.sharetwitter');
-const tweet = "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
+const twitterURL = document.querySelector(".sharetwitter");
+const tweet =
+  "https://twitter.com/intent/tweet?text=Esta%20es%20la%20tarjeta%20que%20he%20creado%20con%20Awesome%20Profile%20Cards";
 
 function showURL(fetchresult) {
-showResultURL.classList.remove('js-hidden');
+  showResultURL.classList.remove("js-hidden");
   if (fetchresult.success) {
-    responseURL.innerHTML = "<a href=" + fetchresult.cardURL + " target = 'blank'>" + fetchresult.cardURL + "</a>";
-    twitterURL.href = tweet + fetchresult.cardURL ;
+    responseURL.innerHTML =
+      "<a href=" +
+      fetchresult.cardURL +
+      " target = 'blank' class='sharetwitter share__twitter__link'>" +
+      fetchresult.cardURL +
+      "</a>";
+    twitterURL.href = tweet + fetchresult.cardURL;
   } else {
     responseURL.innerHTML = "ERROR:" + fetchresult.error;
   }
@@ -332,17 +357,29 @@ showResultURL.classList.remove('js-hidden');
 const jsonLocalStor = localStorage.getItem('objectLocalStor');
 
 function sendRequest(json) {
-  debugger;
   fetch("https://us-central1-awesome-cards-cf6f0.cloudfunctions.net/card/", {
     method: "POST",
-    headers: {'content-type': 'application/json'
-    },
-    body: json,
+    headers: { "content-type": "application/json" },
+    body: json
   })
-    .then(function(resp) { return resp.json(); })
-    .then(function(result) { showURL(result); })
-    .catch(function(error) { console.log(error); });
+    .then(function(resp) {
+      return resp.json();
+    })
+    .then(function(result) {
+      showURL(result);
+      disableShareButton(result);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 }
+
+function disableShareButton (fetchresult) {
+  if (fetchresult.success) {
+    buttonShare.disabled = true;
+  }
+}
+
 // Convertir objectlocalstor to json y pasar por sendrequest y showURL
 function createCard(ev) {
   ev.preventDefault();
