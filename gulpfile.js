@@ -65,17 +65,25 @@ gulp.task("styles", function(done) {
 });
 
 // >> Concatenate JS files with sourcemaps
-gulp.task("scripts", function(done) {
-  gulp
-    .src(config.js.src)
+gulp.task('scripts-landing', function(done){
+  gulp.src("_src/assets/js/landing.js")
     .pipe(sourcemaps.init())
-    .pipe(
-      plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
-    )
-
-    .pipe(sourcemaps.write("./"))
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(concat('landing.js'))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(config.js.dest))
-    .pipe(browserSync.reload({ stream: true }));
+    .pipe(browserSync.reload({ stream:true }));
+  done();
+});
+
+gulp.task('scripts-main', function(done){
+  gulp.src(["_src/assets/js/**/*.js", "!_src/assets/js/landing.js"])
+    .pipe(sourcemaps.init())
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(concat('main.js'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(config.js.dest))
+    .pipe(browserSync.reload({ stream:true }));
   done();
 });
 
@@ -160,17 +168,29 @@ gulp.task("styles-dist", function(done) {
 });
 
 // >> Concatenate and minify JS files w/o sourcemaps
-gulp.task("scripts-dist", function(done) {
-  gulp
-    .src(config.js.src)
-    .pipe(
-      plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
-    )
-
-    .pipe(uglify())
-    .pipe(gulp.dest(config.js.dist));
+// >> Concatenate JS files with sourcemaps
+gulp.task('scripts-landing-dist', function(done){
+  gulp.src("_src/assets/js/landing.js")
+    .pipe(sourcemaps.init())
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(concat('landing.js'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(config.js.dist))
+    .pipe(browserSync.reload({ stream:true }));
   done();
 });
+
+gulp.task('scripts-main-dist', function(done){
+  gulp.src(["_src/assets/js/**/*.js", "!_src/assets/js/landing.js"])
+    .pipe(sourcemaps.init())
+    .pipe(plumber({errorHandler: notify.onError('Error: <%= error.message %>')}))
+    .pipe(concat('main.js'))
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest(config.js.dist))
+    .pipe(browserSync.reload({ stream:true }));
+  done();
+});
+
 
 // >> Copy image files
 gulp.task("images-dist", function(done) {
@@ -204,11 +224,11 @@ gulp.task("icons-dist", function(done) {
   done();
 });
 
-// > Watchers + BrowserSync server
+//> Watchers + BrowserSync server
 gulp.task(
   "default",
   gulp.series(
-    ["clean", "html", "styles", "scripts", "images", "icons", "fonts"],
+    ["clean", "html", "styles", "scripts-landing","scripts-main", "images", "icons", "fonts"],
     function(done) {
       browserSync.init({
         server: {
@@ -219,14 +239,15 @@ gulp.task(
       gulp.watch(config.images.src, gulp.series(["images", "bs-reload"]));
       gulp.watch(config.icons.src, gulp.series(["icons", "bs-reload"]));
       gulp.watch(config.scss.src, gulp.series("styles"));
-      gulp.watch(config.js.src, gulp.series(["scripts", "bs-reload"]));
+      gulp.watch(config.js.src, gulp.series(["scripts-main", "bs-reload"]));
+      gulp.watch(config.js.src, gulp.series(["scripts-landing", "bs-reload"]));
       gulp.watch(config.js.src, gulp.series(["fonts", "bs-reload"]));
       done();
     }
   )
 );
 
-// > Build a production-ready version of your proyect
+//> Build a production-ready version of your proyect
 gulp.task(
   "docs",
   gulp.series(
@@ -234,7 +255,8 @@ gulp.task(
       "clean-dist",
       "html-dist",
       "styles-dist",
-      "scripts-dist",
+      "scripts-main-dist",
+      "scripts-landing-dist",
       "images-dist",
       "icons-dist",
       "fonts-dist"
@@ -246,7 +268,7 @@ gulp.task(
   )
 );
 
-// > Recarga las ventanas del navegador
+//> Recarga las ventanas del navegador
 gulp.task("bs-reload", function(done) {
   browserSync.reload();
   done();

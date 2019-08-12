@@ -1,3 +1,5 @@
+console.log('LANDING');
+
 "use strict";
 const homeBtn = document.querySelector(".layout-page__button");
 const getBody = document.querySelector(".layout");
