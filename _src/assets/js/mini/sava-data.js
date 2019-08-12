@@ -1,4 +1,3 @@
-'use strict';
 
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {

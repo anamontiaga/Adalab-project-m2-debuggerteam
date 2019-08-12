@@ -1,5 +1,3 @@
-'use strict';
-
 
 const visualization = document.querySelector(".visualization");
 

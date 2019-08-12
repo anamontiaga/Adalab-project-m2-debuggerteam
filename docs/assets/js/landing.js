@@ -14,3 +14,5 @@ function getFocus() {
 
 getBody.addEventListener("click", getFocus);
 homeBtn.addEventListener("click", handlerGoHome);
+
+//# sourceMappingURL=landing.js.map

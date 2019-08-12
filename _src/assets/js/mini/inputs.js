@@ -1,5 +1,3 @@
-'use strict';
-
 function removeAtSymbol(string) {
   return string.replace("@", "");
 }
