@@ -1,3 +1,4 @@
+'use strict';
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
 const makeCollapse = event => {
