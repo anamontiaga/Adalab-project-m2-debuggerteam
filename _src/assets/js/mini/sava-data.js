@@ -1,4 +1,4 @@
-
+/* eslint-disable strict */
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
@@ -14,7 +14,6 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-
 
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 
@@ -86,6 +85,7 @@ function setRadioValue() {
   if (savedData) {
     for (let i = 0; i < palletBtn.length; i++) {
       if (i === savedData.palette) {
+        visualization.classList.add(palletBtn[i-1].parentElement.id);
         palletBtn[i - 1].checked = true;
       }
     }

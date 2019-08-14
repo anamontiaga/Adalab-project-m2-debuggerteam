@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
 const profileAvatar = document.querySelector(".visualization__user__img");
@@ -15,11 +16,18 @@ const clearPhoto = () => {
 };
 
 const writeImage = () => {
-  if (fr.result !== null) {
+  const savedData = setLocalStorage();
+  if (savedData.photo){
+    chargeImage();
+    console.log('Im comming from localstorage');
+  }
+  else if (fr.result) {
     miniAvatar.style.backgroundImage = `url('${fr.result}')`;
     profileAvatar.style.backgroundImage = `url('${fr.result}')`;
     readImageValue(fr.result);
     saveLocalStorage();
+    console.log('Im comming from user file');
+
   } else {
     clearPhoto();
   }
