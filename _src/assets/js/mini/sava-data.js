@@ -84,9 +84,8 @@ function setRadioValue() {
   const savedData = setLocalStorage();
   if (savedData) {
     for (let i = 0; i < palletBtn.length; i++) {
-      console.log(palletBtn);
       if (i === savedData.palette) {
-        visualization.classList.add(palletBtn[i].parentElement.id);
+        visualization.classList.add(palletBtn[i-1].parentElement.id);
         palletBtn[i - 1].checked = true;
       }
     }

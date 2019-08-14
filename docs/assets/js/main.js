@@ -1,4 +1,5 @@
 'use strict';
+/* eslint-disable strict */
 const btnsCollapse = document.querySelectorAll(".js-btn-collapse");
 
 const makeCollapse = event => {
@@ -12,6 +13,7 @@ const makeCollapse = event => {
 for (let i = 0; i < btnsCollapse.length; i++) {
   btnsCollapse[i].addEventListener("click", makeCollapse);
 }
+/* eslint-disable strict */
 const uploadImage = document.querySelector("#photo");
 const miniAvatar = document.querySelector(".data__form__image-thumbnail");
 const profileAvatar = document.querySelector(".visualization__user__img");
@@ -29,11 +31,18 @@ const clearPhoto = () => {
 };
 
 const writeImage = () => {
-  if (fr.result !== null) {
+  const savedData = setLocalStorage();
+  if (savedData.photo){
+    chargeImage();
+    console.log('Im comming from localstorage');
+  }
+  else if (fr.result) {
     miniAvatar.style.backgroundImage = `url('${fr.result}')`;
     profileAvatar.style.backgroundImage = `url('${fr.result}')`;
     readImageValue(fr.result);
     saveLocalStorage();
+    console.log('Im comming from user file');
+
   } else {
     clearPhoto();
   }
@@ -129,21 +138,18 @@ const clearForm = () => {
   }
 };
 
-
+/* eslint-disable no-undef */
 /* eslint-disable strict */
 
-const visualization = document.querySelector(".visualization");
-
-const palettBoxes = document.querySelectorAll(".color-pallet");
-
-const palletBtn = document.querySelectorAll(".js-palett-btn");
+const visualization = document.querySelector('.visualization');
+const palettBoxes = document.querySelectorAll('.color-pallet');
+const palletBtn = document.querySelectorAll('.js-palett-btn');
 
 const removeClasses = () => {
   for (let i = 1; i < visualization.classList.length; i++) {
     visualization.classList.remove(visualization.classList[i]);
   }
 };
-
 
 const addChoosedClass = event => {
   let selectedPalett = event.currentTarget.id;
@@ -154,7 +160,6 @@ const checkBtn = () => {
   event.currentTarget.firstElementChild.checked = true;
 };
 
-
 const changePalett = event => {
   removeClasses();
   addChoosedClass(event);
@@ -163,9 +168,9 @@ const changePalett = event => {
   saveLocalStorage();
 };
 
-const handlePalettBtnsClick = function() {
-  for (let i = 0; i < palettBoxes.length; i++) {
-    palettBoxes[i].addEventListener("click", changePalett);
+const handlePalettBtnsClick = () => {
+  for (const palett of palettBoxes) {
+    palett.addEventListener('click', changePalett);
   }
 };
 
@@ -192,7 +197,7 @@ const resetPreview = () => {
 const btnReset = document.querySelector(".js-reset");
 
 btnReset.addEventListener("click", resetPreview);
-
+/* eslint-disable strict */
 function sendDataCard() {
   for (let i = 0; i < dataCard.length; i++) {
     if (inputForm[i].value === "") {
@@ -208,7 +213,6 @@ function inputAddEvent() {
     inputForm[i].addEventListener("keyup", sendDataCard);
   }
 }
-
 
 const inputFormRadio = document.querySelectorAll(".js-palett-choose");
 
@@ -280,6 +284,7 @@ function setRadioValue() {
   if (savedData) {
     for (let i = 0; i < palletBtn.length; i++) {
       if (i === savedData.palette) {
+        visualization.classList.add(palletBtn[i-1].parentElement.id);
         palletBtn[i - 1].checked = true;
       }
     }
